@@ -1,0 +1,1148 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Ragpi",
+    "summary": "Ragpi is an AI assistant specialized in retrieving and synthesizing technical information to provide relevant answers to queries.",
+    "version": "0.2.x"
+  },
+  "paths": {
+    "/healthcheck": {
+      "get": {
+        "tags": ["healthcheck"],
+        "summary": "Healthcheck",
+        "operationId": "healthcheck_healthcheck_get",
+        "responses": {
+          "200": {
+            "description": "Healthcheck status",
+            "content": {
+              "application/json": {
+                "schema": {},
+                "example": {
+                  "api": { "status": "ok" },
+                  "redis": { "status": "ok" },
+                  "workers": { "status": "ok", "active_workers": 2 }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "example": {
+                  "api": { "status": "ok" },
+                  "redis": { "status": "error", "message": "Connection error" },
+                  "workers": {
+                    "status": "error",
+                    "message": "No active workers found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": { "detail": "An unexpected error occurred" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "detail": "Validation error",
+                  "errors": [
+                    {
+                      "type": "type",
+                      "loc": "field.sub_field",
+                      "msg": "error message",
+                      "input": "input value"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/sources": {
+      "get": {
+        "tags": ["sources"],
+        "summary": "List Sources",
+        "operationId": "list_sources_sources_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/SourceMetadata" },
+                  "type": "array",
+                  "title": "Response List Sources Sources Get"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Service unavailable" }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": { "detail": "An unexpected error occurred" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "detail": "Validation error",
+                  "errors": [
+                    {
+                      "type": "type",
+                      "loc": "field.sub_field",
+                      "msg": "error message",
+                      "input": "input value"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      },
+      "post": {
+        "tags": ["sources"],
+        "summary": "Create Source",
+        "operationId": "create_source_sources_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateSourceRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SourceTask" }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Service unavailable" }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": { "detail": "An unexpected error occurred" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "detail": "Validation error",
+                  "errors": [
+                    {
+                      "type": "type",
+                      "loc": "field.sub_field",
+                      "msg": "error message",
+                      "input": "input value"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Source already exists",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Source 'example' already exists" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/sources/{source_name}": {
+      "get": {
+        "tags": ["sources"],
+        "summary": "Get Source",
+        "operationId": "get_source_sources__source_name__get",
+        "security": [{ "APIKeyHeader": [] }],
+        "parameters": [
+          {
+            "name": "source_name",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "title": "Source Name" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SourceMetadata" }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Service unavailable" }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": { "detail": "An unexpected error occurred" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "detail": "Validation error",
+                  "errors": [
+                    {
+                      "type": "type",
+                      "loc": "field.sub_field",
+                      "msg": "error message",
+                      "input": "input value"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Source not found",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Source 'example' not found" }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["sources"],
+        "summary": "Update Source",
+        "operationId": "update_source_sources__source_name__put",
+        "security": [{ "APIKeyHeader": [] }],
+        "parameters": [
+          {
+            "name": "source_name",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "title": "Source Name" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateSourceRequest" }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SourceTask" }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Service unavailable" }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": { "detail": "An unexpected error occurred" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "detail": "Validation error",
+                  "errors": [
+                    {
+                      "type": "type",
+                      "loc": "field.sub_field",
+                      "msg": "error message",
+                      "input": "input value"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Source not found",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Source 'example' not found" }
+              }
+            }
+          },
+          "423": {
+            "description": "Source locked",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Source 'example' is locked" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["sources"],
+        "summary": "Delete Source",
+        "operationId": "delete_source_sources__source_name__delete",
+        "security": [{ "APIKeyHeader": [] }],
+        "parameters": [
+          {
+            "name": "source_name",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "title": "Source Name" }
+          }
+        ],
+        "responses": {
+          "204": { "description": "Successful Response" },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Service unavailable" }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": { "detail": "An unexpected error occurred" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "detail": "Validation error",
+                  "errors": [
+                    {
+                      "type": "type",
+                      "loc": "field.sub_field",
+                      "msg": "error message",
+                      "input": "input value"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Source not found",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Source 'example' not found" }
+              }
+            }
+          },
+          "423": {
+            "description": "Source locked",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Source 'example' is locked" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sources/{source_name}/documents": {
+      "get": {
+        "tags": ["sources"],
+        "summary": "Get Source Documents",
+        "operationId": "get_source_documents_sources__source_name__documents_get",
+        "security": [{ "APIKeyHeader": [] }],
+        "parameters": [
+          {
+            "name": "source_name",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "title": "Source Name" }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "default": 100, "title": "Limit" }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "default": 0, "title": "Offset" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Document" },
+                  "title": "Response Get Source Documents Sources  Source Name  Documents Get"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Service unavailable" }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": { "detail": "An unexpected error occurred" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "detail": "Validation error",
+                  "errors": [
+                    {
+                      "type": "type",
+                      "loc": "field.sub_field",
+                      "msg": "error message",
+                      "input": "input value"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Source not found",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Source 'example' not found" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sources/{source_name}/search": {
+      "get": {
+        "tags": ["sources"],
+        "summary": "Search Source",
+        "operationId": "search_source_sources__source_name__search_get",
+        "security": [{ "APIKeyHeader": [] }],
+        "parameters": [
+          {
+            "name": "source_name",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "title": "Source Name" }
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string", "title": "Query" }
+          },
+          {
+            "name": "top_k",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "default": 10, "title": "Top K" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Document" },
+                  "title": "Response Search Source Sources  Source Name  Search Get"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Service unavailable" }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": { "detail": "An unexpected error occurred" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "detail": "Validation error",
+                  "errors": [
+                    {
+                      "type": "type",
+                      "loc": "field.sub_field",
+                      "msg": "error message",
+                      "input": "input value"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Source not found",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Source 'example' not found" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chat": {
+      "post": {
+        "tags": ["chat"],
+        "summary": "Chat",
+        "operationId": "chat_chat_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateChatRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ChatResponse" }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Service unavailable" }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": { "detail": "An unexpected error occurred" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "detail": "Validation error",
+                  "errors": [
+                    {
+                      "type": "type",
+                      "loc": "field.sub_field",
+                      "msg": "error message",
+                      "input": "input value"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Model not found",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Model 'example' not found" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/tasks": {
+      "get": {
+        "tags": ["tasks"],
+        "summary": "List Tasks",
+        "operationId": "list_tasks_tasks_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": { "$ref": "#/components/schemas/Task" },
+                  "type": "array",
+                  "title": "Response List Tasks Tasks Get"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Service unavailable" }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": { "detail": "An unexpected error occurred" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "detail": "Validation error",
+                  "errors": [
+                    {
+                      "type": "type",
+                      "loc": "field.sub_field",
+                      "msg": "error message",
+                      "input": "input value"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/tasks/{task_id}": {
+      "get": {
+        "tags": ["tasks"],
+        "summary": "Get Task",
+        "operationId": "get_task_tasks__task_id__get",
+        "security": [{ "APIKeyHeader": [] }],
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "title": "Task Id" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Task" }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Service unavailable" }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": { "detail": "An unexpected error occurred" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "detail": "Validation error",
+                  "errors": [
+                    {
+                      "type": "type",
+                      "loc": "field.sub_field",
+                      "msg": "error message",
+                      "input": "input value"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Task not found",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Task 'example' not found" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks/{task_id}/terminate": {
+      "post": {
+        "tags": ["tasks"],
+        "summary": "Terminate Task",
+        "operationId": "terminate_task_tasks__task_id__terminate_post",
+        "security": [{ "APIKeyHeader": [] }],
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "title": "Task Id" }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Task termination initiated",
+            "content": {
+              "application/json": {
+                "schema": {},
+                "example": { "message": "Terminating task 'example'" }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Service unavailable" }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": { "detail": "An unexpected error occurred" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "detail": "Validation error",
+                  "errors": [
+                    {
+                      "type": "type",
+                      "loc": "field.sub_field",
+                      "msg": "error message",
+                      "input": "input value"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Task not found",
+            "content": {
+              "application/json": {
+                "example": { "detail": "Task 'example' not found" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ChatMessage": {
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": ["user", "assistant"],
+            "title": "Role"
+          },
+          "content": { "type": "string", "title": "Content" }
+        },
+        "type": "object",
+        "required": ["role", "content"],
+        "title": "ChatMessage"
+      },
+      "ChatResponse": {
+        "properties": {
+          "message": {
+            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "title": "Message"
+          },
+          "retrieved_documents": {
+            "items": { "$ref": "#/components/schemas/Document" },
+            "type": "array",
+            "title": "Retrieved Documents"
+          }
+        },
+        "type": "object",
+        "required": ["message", "retrieved_documents"],
+        "title": "ChatResponse"
+      },
+      "CreateChatRequest": {
+        "properties": {
+          "sources": {
+            "anyOf": [
+              { "items": { "type": "string" }, "type": "array" },
+              { "type": "null" }
+            ],
+            "title": "Sources"
+          },
+          "model": { "type": "string", "title": "Model", "default": "gpt-4o" },
+          "messages": {
+            "items": { "$ref": "#/components/schemas/ChatMessage" },
+            "type": "array",
+            "title": "Messages"
+          }
+        },
+        "type": "object",
+        "required": ["messages"],
+        "title": "CreateChatRequest"
+      },
+      "CreateSourceRequest": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 3,
+            "title": "Name"
+          },
+          "description": { "type": "string", "title": "Description" },
+          "connector": {
+            "oneOf": [
+              { "$ref": "#/components/schemas/SitemapConfig" },
+              { "$ref": "#/components/schemas/GithubIssuesConfig" },
+              { "$ref": "#/components/schemas/GithubReadmeConfig" }
+            ],
+            "title": "Connector",
+            "discriminator": {
+              "propertyName": "type",
+              "mapping": {
+                "github_issues": "#/components/schemas/GithubIssuesConfig",
+                "github_readme": "#/components/schemas/GithubReadmeConfig",
+                "sitemap": "#/components/schemas/SitemapConfig"
+              }
+            }
+          }
+        },
+        "type": "object",
+        "required": ["name", "description", "connector"],
+        "title": "CreateSourceRequest"
+      },
+      "Document": {
+        "properties": {
+          "id": { "type": "string", "title": "Id" },
+          "content": { "type": "string", "title": "Content" },
+          "title": { "type": "string", "title": "Title" },
+          "url": { "type": "string", "title": "Url" },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": ["id", "content", "title", "url", "created_at"],
+        "title": "Document"
+      },
+      "GithubIssuesConfig": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "github_issues",
+            "title": "Type"
+          },
+          "repo_owner": { "type": "string", "title": "Repo Owner" },
+          "repo_name": { "type": "string", "title": "Repo Name" },
+          "state": {
+            "type": "string",
+            "enum": ["all", "open", "closed"],
+            "title": "State",
+            "default": "all"
+          },
+          "include_labels": {
+            "anyOf": [
+              { "items": { "type": "string" }, "type": "array" },
+              { "type": "null" }
+            ],
+            "title": "Include Labels"
+          },
+          "exclude_labels": {
+            "anyOf": [
+              { "items": { "type": "string" }, "type": "array" },
+              { "type": "null" }
+            ],
+            "title": "Exclude Labels"
+          },
+          "issue_age_limit": {
+            "anyOf": [{ "type": "integer" }, { "type": "null" }],
+            "title": "Issue Age Limit"
+          }
+        },
+        "type": "object",
+        "required": ["type", "repo_owner", "repo_name"],
+        "title": "GithubIssuesConfig"
+      },
+      "GithubReadmeConfig": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "github_readme",
+            "title": "Type"
+          },
+          "repo_owner": { "type": "string", "title": "Repo Owner" },
+          "repo_name": { "type": "string", "title": "Repo Name" },
+          "include_root": {
+            "type": "boolean",
+            "title": "Include Root",
+            "default": true
+          },
+          "sub_dirs": {
+            "anyOf": [
+              { "items": { "type": "string" }, "type": "array" },
+              { "type": "null" }
+            ],
+            "title": "Sub Dirs"
+          },
+          "ref": {
+            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "title": "Ref"
+          }
+        },
+        "type": "object",
+        "required": ["type", "repo_owner", "repo_name"],
+        "title": "GithubReadmeConfig"
+      },
+      "SitemapConfig": {
+        "properties": {
+          "type": { "type": "string", "const": "sitemap", "title": "Type" },
+          "sitemap_url": { "type": "string", "title": "Sitemap Url" },
+          "include_pattern": {
+            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "title": "Include Pattern"
+          },
+          "exclude_pattern": {
+            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "title": "Exclude Pattern"
+          }
+        },
+        "type": "object",
+        "required": ["type", "sitemap_url"],
+        "title": "SitemapConfig"
+      },
+      "SourceMetadata": {
+        "properties": {
+          "id": { "type": "string", "title": "Id" },
+          "name": { "type": "string", "title": "Name" },
+          "description": { "type": "string", "title": "Description" },
+          "num_docs": { "type": "integer", "title": "Num Docs" },
+          "last_task_id": { "type": "string", "title": "Last Task Id" },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          },
+          "connector": {
+            "oneOf": [
+              { "$ref": "#/components/schemas/SitemapConfig" },
+              { "$ref": "#/components/schemas/GithubIssuesConfig" },
+              { "$ref": "#/components/schemas/GithubReadmeConfig" }
+            ],
+            "title": "Connector",
+            "discriminator": {
+              "propertyName": "type",
+              "mapping": {
+                "github_issues": "#/components/schemas/GithubIssuesConfig",
+                "github_readme": "#/components/schemas/GithubReadmeConfig",
+                "sitemap": "#/components/schemas/SitemapConfig"
+              }
+            }
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "description",
+          "num_docs",
+          "last_task_id",
+          "created_at",
+          "updated_at",
+          "connector"
+        ],
+        "title": "SourceMetadata"
+      },
+      "SourceTask": {
+        "properties": {
+          "task_id": {
+            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "title": "Task Id"
+          },
+          "source": { "$ref": "#/components/schemas/SourceMetadata" },
+          "message": { "type": "string", "title": "Message" }
+        },
+        "type": "object",
+        "required": ["task_id", "source", "message"],
+        "title": "SourceTask"
+      },
+      "Task": {
+        "properties": {
+          "id": {
+            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "title": "Id"
+          },
+          "status": {
+            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "title": "Status"
+          },
+          "completed_at": {
+            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "title": "Completed At"
+          },
+          "metadata": {
+            "anyOf": [
+              { "type": "object" },
+              { "type": "string" },
+              { "type": "null" }
+            ],
+            "title": "Metadata"
+          }
+        },
+        "type": "object",
+        "required": ["id", "status", "completed_at", "metadata"],
+        "title": "Task"
+      },
+      "UpdateSourceRequest": {
+        "properties": {
+          "sync": { "type": "boolean", "title": "Sync", "default": true },
+          "description": {
+            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "title": "Description"
+          },
+          "connector": {
+            "anyOf": [
+              {
+                "oneOf": [
+                  { "$ref": "#/components/schemas/SitemapConfig" },
+                  { "$ref": "#/components/schemas/GithubIssuesConfig" },
+                  { "$ref": "#/components/schemas/GithubReadmeConfig" }
+                ],
+                "discriminator": {
+                  "propertyName": "type",
+                  "mapping": {
+                    "github_issues": "#/components/schemas/GithubIssuesConfig",
+                    "github_readme": "#/components/schemas/GithubReadmeConfig",
+                    "sitemap": "#/components/schemas/SitemapConfig"
+                  }
+                }
+              },
+              { "type": "null" }
+            ],
+            "title": "Connector"
+          }
+        },
+        "type": "object",
+        "title": "UpdateSourceRequest"
+      }
+    },
+    "securitySchemes": {
+      "APIKeyHeader": { "type": "apiKey", "in": "header", "name": "x-api-key" }
+    }
+  }
+}

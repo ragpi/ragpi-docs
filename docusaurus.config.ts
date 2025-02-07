@@ -22,6 +22,35 @@ const config: Config = {
     locales: ["en"],
   },
 
+  plugins: [
+    [
+      "@scalar/docusaurus",
+      {
+        label: "API Reference",
+        route: "/api/",
+        configuration: {
+          spec: {
+            url: "/openapi.json",
+          },
+          hideTestRequestButton: true,
+          hiddenClients: true,
+          hideClientButton: true,
+          hideDarkModeToggle: true,
+          servers: [
+            {
+              url: "https://api.example.com",
+            },
+          ],
+          authentication: {
+            apiKey: {
+              token: "example-api-key",
+            },
+          },
+        },
+      },
+    ],
+  ],
+
   presets: [
     [
       "classic",
