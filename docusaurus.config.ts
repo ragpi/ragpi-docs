@@ -30,7 +30,7 @@ const config: Config = {
         docs: {
           routeBasePath: "/",
           sidebarPath: "./sidebars.ts",
-          sidebarCollapsed: false,
+          // sidebarCollapsed: false,
           editUrl: "https://github.com/ragpi/ragpi-docs",
         },
         // blog: {

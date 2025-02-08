@@ -38,5 +38,5 @@ EMBEDDING_PROVIDER=openai | ollama | openai_compatible
   - Controlled by `CHAT_HISTORY_LIMIT` (default: `20`).
 
 - **Max Chat Iterations:**
-  - Limits the number of calls to the model during chat generation.
+  - Maximum steps allowed for generating a response
   - Controlled by `MAX_CHAT_ITERATIONS` (default: `5`).
