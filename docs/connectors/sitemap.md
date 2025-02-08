@@ -1,12 +1,13 @@
 ---
 sidebar_position: 2
+title: Sitemap
 ---
+
+import ApiSchema from "@theme/ApiSchema";
 
 # Sitemap Connector
 
-The Sitemap connector allows you to extract and process pages from website sitemaps.
-
-[View Full API Reference](/api/#model/sitemapconfig)
+The Sitemap connector allows you to extract and process pages from website sitemaps when [creating a source](/api#tag/Sources/operation/create_source_sources_post).
 
 ## Features
 
@@ -14,7 +15,11 @@ The Sitemap connector allows you to extract and process pages from website sitem
 - Supports regex patterns for URL filtering
 - Respects robots.txt directives
 
-## Example Configuration
+## Configuration
+
+<ApiSchema pointer="#/components/schemas/SitemapConfig" />
+
+## Example Payload
 
 ```json
 {

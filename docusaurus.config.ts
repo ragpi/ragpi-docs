@@ -1,6 +1,7 @@
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
+import type * as Redocusaurus from "redocusaurus";
 
 const config: Config = {
   title: "Ragpi Documentation",
@@ -22,35 +23,6 @@ const config: Config = {
     locales: ["en"],
   },
 
-  plugins: [
-    [
-      "@scalar/docusaurus",
-      {
-        label: "API Reference",
-        route: "/api/",
-        configuration: {
-          spec: {
-            url: "/openapi.json",
-          },
-          hideTestRequestButton: true,
-          hiddenClients: true,
-          hideClientButton: true,
-          hideDarkModeToggle: true,
-          servers: [
-            {
-              url: "https://api.example.com",
-            },
-          ],
-          authentication: {
-            apiKey: {
-              token: "example-api-key",
-            },
-          },
-        },
-      },
-    ],
-  ],
-
   presets: [
     [
       "classic",
@@ -58,6 +30,7 @@ const config: Config = {
         docs: {
           routeBasePath: "/",
           sidebarPath: "./sidebars.ts",
+          sidebarCollapsed: false,
           editUrl: "https://github.com/ragpi/ragpi-docs",
         },
         // blog: {
@@ -75,6 +48,20 @@ const config: Config = {
         },
       } satisfies Preset.Options,
     ],
+    [
+      "redocusaurus",
+      {
+        specs: [
+          {
+            spec: "./openapi.json",
+            route: "/api/",
+          },
+        ],
+        theme: {
+          primaryColor: "#2e8555",
+        },
+      },
+    ] satisfies Redocusaurus.PresetEntry,
   ],
 
   themeConfig: {
@@ -88,10 +75,11 @@ const config: Config = {
       items: [
         {
           type: "docSidebar",
-          sidebarId: "mainSidebar",
+          sidebarId: "docsSidebar",
           position: "left",
           label: "Docs",
         },
+        { to: "/api", label: "API Reference", position: "left" },
         // { to: "/blog", label: "Blog", position: "left" },
         {
           href: "https://github.com/ragpi/ragpi",
@@ -102,47 +90,6 @@ const config: Config = {
     },
     footer: {
       style: "dark",
-      // links: [
-      //   {
-      //     title: "Docs",
-      //     items: [
-      //       {
-      //         label: "Tutorial",
-      //         to: "/docs/intro",
-      //       },
-      //     ],
-      //   },
-      //   {
-      //     title: "Community",
-      //     items: [
-      //       {
-      //         label: "Stack Overflow",
-      //         href: "https://stackoverflow.com/questions/tagged/docusaurus",
-      //       },
-      //       {
-      //         label: "Discord",
-      //         href: "https://discordapp.com/invite/docusaurus",
-      //       },
-      //       {
-      //         label: "X",
-      //         href: "https://x.com/docusaurus",
-      //       },
-      //     ],
-      //   },
-      //   {
-      //     title: "More",
-      //     items: [
-      //       {
-      //         label: "Blog",
-      //         to: "/blog",
-      //       },
-      //       {
-      //         label: "GitHub",
-      //         href: "https://github.com/facebook/docusaurus",
-      //       },
-      //     ],
-      //   },
-      // ],
       copyright: `Copyright © ${new Date().getFullYear()} Ragpi. Built with Docusaurus.`,
     },
     prism: {

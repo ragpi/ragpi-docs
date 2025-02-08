@@ -19,7 +19,7 @@ Ragpi is an API-first, open-source AI assistant that leverages LLMs to search an
 
 1. **Set up a Source with a Connector**:
 
-   - Use the [`/sources`](/api/#tag/sources/POST/sources) endpoint to configure a source with your chosen connector.
+   - Use the [`/sources`](/api#tag/Sources/operation/create_source_sources_post) endpoint to configure a source with your chosen connector.
    - Each connector type has its own configuration parameters.
 
    Example payload using the Sitemap connector:
@@ -37,11 +37,11 @@ Ragpi is an API-first, open-source AI assistant that leverages LLMs to search an
 
 2. **Monitor Source Synchronization**:
 
-   - After adding a source, documents will be synced automatically. You can monitor the sync process through the [`/tasks`](/api/#tag/tasks/GET/tasks/{task_id}) endpoint.
+   - After adding a source, documents will be synced automatically. You can monitor the sync process through the [`/tasks`](/api#tag/Tasks/operation/get_task_tasks__task_id__get) endpoint.
 
 3. **Chat with the AI Assistant**:
 
-   - Use the [`/chat`](/api/#tag/chat/POST/chat) endpoint to query the AI assistant using the configured sources.
+   - Use the [`/chat`](/api#tag/Chat/operation/chat_chat_post) endpoint to query the AI assistant using the configured sources.
    - If no sources are specified in the payload, all available sources will be used.
    - Example payload:
      ```json

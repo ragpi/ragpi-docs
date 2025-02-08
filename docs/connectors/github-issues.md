@@ -1,12 +1,13 @@
 ---
 sidebar_position: 3
+title: GitHub Issues
 ---
+
+import ApiSchema from "@theme/ApiSchema";
 
 # GitHub Issues Connector
 
-The GitHub Issues connector allows you to extract and process issues from a GitHub repository.
-
-[View Full API Reference](/api/#model/githubissuesconfig)
+The GitHub Issues connector allows you to extract and process issues from a GitHub repository when [creating a source](/api#tag/Sources/operation/create_source_sources_post).
 
 ## Features
 
@@ -15,7 +16,11 @@ The GitHub Issues connector allows you to extract and process issues from a GitH
 - Can include/exclude based on labels
 - Configurable age limit for issues
 
-## Example Configuration
+## Configuration
+
+<ApiSchema pointer="#/components/schemas/GithubIssuesConfig" />
+
+## Example Payload
 
 ```json
 {

@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Providers
+# Overview
 
 Ragpi supports multiple Large Language Model (LLM) providers for chat and embedding generation. Each provider can be configured using specific environment variables.
 

@@ -8,7 +8,7 @@
   "paths": {
     "/healthcheck": {
       "get": {
-        "tags": ["healthcheck"],
+        "tags": ["Healthcheck"],
         "summary": "Healthcheck",
         "operationId": "healthcheck_healthcheck_get",
         "responses": {
@@ -72,7 +72,7 @@
     },
     "/sources": {
       "get": {
-        "tags": ["sources"],
+        "tags": ["Sources"],
         "summary": "List Sources",
         "operationId": "list_sources_sources_get",
         "responses": {
@@ -126,7 +126,7 @@
         "security": [{ "APIKeyHeader": [] }]
       },
       "post": {
-        "tags": ["sources"],
+        "tags": ["Sources"],
         "summary": "Create Source",
         "operationId": "create_source_sources_post",
         "requestBody": {
@@ -194,7 +194,7 @@
     },
     "/sources/{source_name}": {
       "get": {
-        "tags": ["sources"],
+        "tags": ["Sources"],
         "summary": "Get Source",
         "operationId": "get_source_sources__source_name__get",
         "security": [{ "APIKeyHeader": [] }],
@@ -260,7 +260,7 @@
         }
       },
       "put": {
-        "tags": ["sources"],
+        "tags": ["Sources"],
         "summary": "Update Source",
         "operationId": "update_source_sources__source_name__put",
         "security": [{ "APIKeyHeader": [] }],
@@ -342,7 +342,7 @@
         }
       },
       "delete": {
-        "tags": ["sources"],
+        "tags": ["Sources"],
         "summary": "Delete Source",
         "operationId": "delete_source_sources__source_name__delete",
         "security": [{ "APIKeyHeader": [] }],
@@ -411,7 +411,7 @@
     },
     "/sources/{source_name}/documents": {
       "get": {
-        "tags": ["sources"],
+        "tags": ["Sources"],
         "summary": "Get Source Documents",
         "operationId": "get_source_documents_sources__source_name__documents_get",
         "security": [{ "APIKeyHeader": [] }],
@@ -495,7 +495,7 @@
     },
     "/sources/{source_name}/search": {
       "get": {
-        "tags": ["sources"],
+        "tags": ["Sources"],
         "summary": "Search Source",
         "operationId": "search_source_sources__source_name__search_get",
         "security": [{ "APIKeyHeader": [] }],
@@ -579,7 +579,7 @@
     },
     "/chat": {
       "post": {
-        "tags": ["chat"],
+        "tags": ["Chat"],
         "summary": "Chat",
         "operationId": "chat_chat_post",
         "requestBody": {
@@ -647,7 +647,7 @@
     },
     "/tasks": {
       "get": {
-        "tags": ["tasks"],
+        "tags": ["Tasks"],
         "summary": "List Tasks",
         "operationId": "list_tasks_tasks_get",
         "responses": {
@@ -703,7 +703,7 @@
     },
     "/tasks/{task_id}": {
       "get": {
-        "tags": ["tasks"],
+        "tags": ["Tasks"],
         "summary": "Get Task",
         "operationId": "get_task_tasks__task_id__get",
         "security": [{ "APIKeyHeader": [] }],
@@ -771,7 +771,7 @@
     },
     "/tasks/{task_id}/terminate": {
       "post": {
-        "tags": ["tasks"],
+        "tags": ["Tasks"],
         "summary": "Terminate Task",
         "operationId": "terminate_task_tasks__task_id__terminate_post",
         "security": [{ "APIKeyHeader": [] }],

@@ -1,12 +1,13 @@
 ---
 sidebar_position: 4
+title: GitHub README
 ---
+
+import ApiSchema from "@theme/ApiSchema";
 
 # GitHub README Connector
 
-The GitHub README connector allows you to extract and process content from README files in a GitHub repository.
-
-[View Full API Reference](/api/#model/githubreadmeconfig)
+The GitHub README connector allows you to extract and process content from README files in a GitHub repository when [creating a source](/api#tag/Sources/operation/create_source_sources_post).
 
 ## Features
 
@@ -14,7 +15,11 @@ The GitHub README connector allows you to extract and process content from READM
 - Can fetch from root and specified subdirectories
 - Supports branch/ref selection
 
-## Example Configuration
+## Configuration
+
+<ApiSchema pointer="#/components/schemas/GithubReadmeConfig" />
+
+## Example Payload
 
 ```json
 {
