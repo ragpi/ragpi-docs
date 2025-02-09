@@ -76,7 +76,7 @@ To deploy with Discord integration, follow the main deployment steps 1-3 above, 
 
 1. When configuring your `.env` file, include these additional Discord-specific variables:
 
-   - `DISCORD_TOKEN` - The bot token for authenticating with Discord.
+   - `DISCORD_TOKEN` - The discord bot token for authenticating with Discord.
    - `DISCORD_CHANNEL_IDS` - A comma-separated list of Discord channel IDs where the bot will listen to.
    - `RAGPI_API_KEY` - (Required only if API authentication is enabled) Set this to one of the values defined in the API_KEYS environment variable of your API service.
 

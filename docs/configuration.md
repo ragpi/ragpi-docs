@@ -82,7 +82,7 @@ Ragpi uses the following environment variables to configure its behavior. These 
 
 | Variable                  | Description                                                            | Default | Notes                                                                                |
 | ------------------------- | ---------------------------------------------------------------------- | ------- | ------------------------------------------------------------------------------------ |
-| `DISCORD_TOKEN`           | Token used by the Discord bot to authenticate with Discord's API       | None    | **Required**                                                                         |
+| `DISCORD_TOKEN`           | The discord bot token for authenticating with Discord                  | None    | **Required**                                                                         |
 | `DISCORD_CHANNEL_IDS`     | Comma-separated list of Discord channel IDs to listen on               | None    | **Required**                                                                         |
 | `RAGPI_BASE_URL`          | Base URL for Ragpi. All chat requests will be sent to this endpoint    | None    | **Required**                                                                         |
 | `RAGPI_API_KEY`           | API key for authenticating with Ragpi endpoints                        | None    | If provided, sets the `x-api-key` header on requests to Ragpi.                       |
