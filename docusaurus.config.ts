@@ -6,7 +6,7 @@ import type * as Redocusaurus from "redocusaurus";
 const config: Config = {
   title: "Ragpi Documentation",
   tagline: "Ragpi Documentation",
-  favicon: "img/favicon.ico",
+  favicon: "img/ragpi.png",
 
   url: "https://docs.ragpi.io",
 
@@ -70,7 +70,7 @@ const config: Config = {
       title: "Ragpi",
       logo: {
         alt: "Ragpi Logo",
-        src: "img/logo.svg",
+        src: "img/ragpi.png",
       },
       items: [
         {
