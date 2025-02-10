@@ -66,7 +66,7 @@ Core Services:
 :::important
 By default, all services are configured to only listen on localhost (127.0.0.1) for security. To expose the API service to external traffic, you can either:
 
-- Change the `DOCKER_API_PORT_MAPPING` environment variable in the `.env` file to `0.0.0.0:8000:8000` to expose the API service on port 8000. (Not recommended for production)
+- Add the `DOCKER_API_PORT_MAPPING` environment variable to the `.env` file with the value `0.0.0.0:8000:8000` to expose the API service on port 8000. (Not recommended for production)
 - Use a reverse proxy like Nginx, a tunneling service like Cloudflare Tunnel, or a similar method to securely expose the API service. (Recommended for production)
   :::
 
