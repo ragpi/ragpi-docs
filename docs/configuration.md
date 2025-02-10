@@ -8,17 +8,17 @@ Ragpi uses the following environment variables to configure its behavior. These 
 
 ## Application Configuration
 
-| Variable                  | Description                                                             | Default                                                                                                                             |
-| ------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `RAGPI_API_VERSION`       | API version of Ragpi                                                    | `v0.2.x`                                                                                                                            |
-| `API_NAME`                | Name of the API service                                                 | `Ragpi`                                                                                                                             |
-| `API_SUMMARY`             | Summary of the API service                                              | `Ragpi is an AI assistant specialized in retrieving and synthesizing technical information to provide relevant answers to queries.` |
-| `API_KEYS`                | List of API keys for access (comma-separated)                           | None                                                                                                                                |
-| `WORKERS_ENABLED`         | Enable/disable background workers                                       | `True`                                                                                                                              |
-| `TASK_RETENTION_DAYS`     | Number of days to retain task history                                   | `7`                                                                                                                                 |
-| `LOG_LEVEL`               | Logging level. Options: `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL` | `INFO`                                                                                                                              |
-| `USER_AGENT`              | User agent string for HTTP requests                                     | `Ragpi`                                                                                                                             |
-| `MAX_CONCURRENT_REQUESTS` | Maximum number of concurrent requests                                   | `10`                                                                                                                                |
+| Variable                  | Description                                   | Default                                                                                                                             | Notes                                                                                                                                                                                    |
+| ------------------------- | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `RAGPI_API_VERSION`       | API version of Ragpi                          | `v0.2.x`                                                                                                                            | -                                                                                                                                                                                        |
+| `API_NAME`                | Name of the API service                       | `Ragpi`                                                                                                                             | -                                                                                                                                                                                        |
+| `API_SUMMARY`             | Summary of the API service                    | `Ragpi is an AI assistant specialized in retrieving and synthesizing technical information to provide relevant answers to queries.` | -                                                                                                                                                                                        |
+| `API_KEYS`                | List of API keys for access (comma-separated) | None                                                                                                                                | If not set, the API will be accessible without authentication. To enable API key authentication, set this to a comma-separated list of self-generated API keys (e.g., `key1,key2,key3`). |
+| `WORKERS_ENABLED`         | Enable/disable background workers             | `True`                                                                                                                              | -                                                                                                                                                                                        |
+| `TASK_RETENTION_DAYS`     | Number of days to retain task history         | `7`                                                                                                                                 | -                                                                                                                                                                                        |
+| `LOG_LEVEL`               | Logging level                                 | `INFO`                                                                                                                              | Options: `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`                                                                                                                                 |
+| `USER_AGENT`              | User agent string for HTTP requests           | `Ragpi`                                                                                                                             | -                                                                                                                                                                                        |
+| `MAX_CONCURRENT_REQUESTS` | Maximum number of concurrent requests         | `10`                                                                                                                                | -                                                                                                                                                                                        |
 
 ## Provider Configuration
 
@@ -36,14 +36,14 @@ Ragpi uses the following environment variables to configure its behavior. These 
 
 ## Database Configuration
 
-| Variable                    | Description                                    | Default                             |
-| --------------------------- | ---------------------------------------------- | ----------------------------------- |
-| `REDIS_URL`                 | Redis connection URL for storage and queue     | `redis://localhost:6379`            |
-| `POSTGRES_URL`              | PostgreSQL database URL                        | `postgresql://localhost:5432/ragpi` |
-| `DOCUMENT_STORE_BACKEND`    | Document store backend (`postgres`, `redis`)   | `postgres`                          |
-| `DOCUMENT_STORE_NAMESPACE`  | Namespace for document storage                 | `document_store`                    |
-| `SOURCE_METADATA_BACKEND`   | Metadata storage backend (`postgres`, `redis`) | `postgres`                          |
-| `SOURCE_METADATA_NAMESPACE` | Namespace for metadata storage                 | `source_metadata`                   |
+| Variable                    | Description                                    | Default                             | Notes                                                                                    |
+| --------------------------- | ---------------------------------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------- |
+| `REDIS_URL`                 | Redis connection URL                           | `redis://localhost:6379`            | **Required**                                                                             |
+| `POSTGRES_URL`              | PostgreSQL database URL                        | `postgresql://localhost:5432/ragpi` | Required if using postgres backend                                                       |
+| `DOCUMENT_STORE_BACKEND`    | Document store backend (`postgres`, `redis`)   | `postgres`                          | -                                                                                        |
+| `DOCUMENT_STORE_NAMESPACE`  | Namespace for document storage                 | `document_store`                    | When using `postgres`, this is the table name; when using `redis`, it is the key prefix. |
+| `SOURCE_METADATA_BACKEND`   | Metadata storage backend (`postgres`, `redis`) | `postgres`                          | -                                                                                        |
+| `SOURCE_METADATA_NAMESPACE` | Namespace for metadata storage                 | `source_metadata`                   | When using `postgres`, this is the table name; when using `redis`, it is the key prefix. |
 
 ## Chat Settings
 
@@ -56,11 +56,11 @@ Ragpi uses the following environment variables to configure its behavior. These 
 
 ## Model Settings
 
-| Variable               | Description                         | Default                  |
-| ---------------------- | ----------------------------------- | ------------------------ |
-| `DEFAULT_CHAT_MODEL`   | Default model for chat interactions | `gpt-4o`                 |
-| `EMBEDDING_MODEL`      | Model used for embeddings           | `text-embedding-3-small` |
-| `EMBEDDING_DIMENSIONS` | Dimensions for embedding vectors    | `1536`                   |
+| Variable               | Description                         | Default                  | Notes                                                          |
+| ---------------------- | ----------------------------------- | ------------------------ | -------------------------------------------------------------- |
+| `DEFAULT_CHAT_MODEL`   | Default model for chat interactions | `gpt-4o`                 | Only models that support tool/function callings are supported. |
+| `EMBEDDING_MODEL`      | Model used for embeddings           | `text-embedding-3-small` | -                                                              |
+| `EMBEDDING_DIMENSIONS` | Dimensions for embedding vectors    | `1536`                   | Must match dimensions of selected embedding model              |
 
 ## Document Processing
 
