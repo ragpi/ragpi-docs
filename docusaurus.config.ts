@@ -55,6 +55,7 @@ const config: Config = {
           {
             spec: "./openapi.json",
             route: "/api/",
+            url: "/openapi.json",
           },
         ],
         theme: {
