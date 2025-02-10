@@ -70,7 +70,8 @@ const config: Config = {
       title: "Ragpi",
       logo: {
         alt: "Ragpi Logo",
-        src: "img/ragpi.png",
+        src: "img/ragpi-logo-black.png",
+        srcDark: "img/ragpi-logo-white.png",
       },
       items: [
         {
