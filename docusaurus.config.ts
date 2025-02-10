@@ -6,7 +6,7 @@ import type * as Redocusaurus from "redocusaurus";
 const config: Config = {
   title: "Ragpi Documentation",
   tagline: "Ragpi Documentation",
-  favicon: "img/ragpi.png",
+  favicon: "img/ragpi-logo-black.png",
 
   url: "https://docs.ragpi.io",
 
