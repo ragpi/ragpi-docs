@@ -25,9 +25,9 @@ These specifications provide enough resources to run all core services comfortab
 
 ### Prerequisites
 
-- Docker and Docker Compose installed
-- Git installed
 - A server or VPS with at least 1 CPU core, 2GB RAM, and 10GB disk space
+- Docker and Docker Compose installed on the server
+- Git installed on the server
 
 ### Deployment Steps
 
@@ -76,9 +76,9 @@ To deploy with Discord integration, follow the main deployment steps 1-3 above, 
 
 1. When configuring your `.env` file, include these additional Discord-specific variables:
 
-   - `DISCORD_TOKEN` - The discord bot token for authenticating with Discord.
-   - `DISCORD_CHANNEL_IDS` - A comma-separated list of Discord channel IDs where the bot will listen to.
-   - `RAGPI_API_KEY` - (Required only if API authentication is enabled) Set this to one of the values defined in the API_KEYS environment variable of your API service.
+   - `DISCORD_TOKEN` - Discord bot token for authenticating with Discord (**Required**)
+   - `DISCORD_CHANNEL_IDS` - Comma-separated list of Discord channel IDs where the bot will listen to (**Required**)
+   - `RAGPI_API_KEY` - API key to authenticate with to the Ragpi API. Set this to one of the values defined in the `API_KEYS` environment variable (**Required only if API authentication is enabled**)
 
    See [Discord Configuration](/configuration#discord-configuration) for a complete list of available options.
 
