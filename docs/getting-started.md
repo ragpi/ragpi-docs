@@ -61,7 +61,7 @@ curl -X POST http://localhost:8000/sources \
   -H "x-api-key: your_secret_api_key" \
   -d '{
     "name": "example-docs",
-    "description": "Documentation for our example project",
+    "description": "Documentation for example project",
     "connector": {
       "type": "sitemap",
       "sitemap_url": "https://docs.example.com/sitemap.xml"
