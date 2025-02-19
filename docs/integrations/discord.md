@@ -36,7 +36,7 @@ Ragpi's Discord integration allows you to easily connect your technical document
 
 ### 5. Deploy Ragpi with Discord Integration
 
-Refer to the [Deployment documentation](/deployment#discord-integration-optional) for instructions on deploying Ragpi with Discord integration.
+Refer to the [Deployment documentation](/deployment) for instructions on deploying Ragpi with the Discord integration.
 Ensure that your `.env` file includes:
 
 ```env
@@ -45,7 +45,16 @@ DISCORD_CHANNEL_IDS=your-channel-id(s)
 ```
 
 :::important
-By default, the bot will listen to messages in the specified channels and respond when mentioned using the `@` symbol. If you want to allow the bot to respond to messages without being mentioned, set the `DISCORD_REQUIRE_MENTION` environment variable to `false`.
+By default, the bot will reply to all messages in the configured channels. If you want to restrict the bot to only respond to messages that mention it, set the `DISCORD_REQUIRE_MENTION` environment variable to `true`.
 :::
 
-See [Discord Configuration](/configuration#discord-configuration) for a complete list of configuration options.
+## Configuration
+
+| Variable                  | Description                                                            | Default | Notes                                                                                |
+| ------------------------- | ---------------------------------------------------------------------- | ------- | ------------------------------------------------------------------------------------ |
+| `DISCORD_TOKEN`           | The discord bot token for authenticating with Discord                  | None    | **Required**                                                                         |
+| `DISCORD_CHANNEL_IDS`     | Comma-separated list of Discord channel IDs to listen on               | None    | **Required**                                                                         |
+| `RAGPI_BASE_URL`          | Base URL for Ragpi. All chat requests will be sent to this endpoint    | None    | **Required**                                                                         |
+| `RAGPI_API_KEY`           | API key for authenticating with Ragpi endpoints                        | None    | If provided, sets the `x-api-key` header on requests to Ragpi API.                   |
+| `RAGPI_SOURCES`           | Comma-separated list of sources to pass to Ragpi for context retrieval | None    | If not set, will use all sources.                                                    |
+| `DISCORD_REQUIRE_MENTION` | Whether the bot requires a direct mention to respond                   | `false` | Accepts `true`, `True`, or `TRUE` for enabled; anything else is treated as disabled. |
