@@ -36,7 +36,7 @@ Ragpi's Discord integration allows you to easily connect your technical document
 
 ### 5. Deploy Ragpi with Discord Integration
 
-Refer to the [Deployment documentation](/deploymentl) for instructions on deploying Ragpi with the Discord integration.
+Refer to the [Deployment documentation](/deployment) for instructions on deploying Ragpi with the Discord integration.
 Ensure that your `.env` file includes:
 
 ```env
