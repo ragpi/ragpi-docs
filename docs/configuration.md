@@ -80,18 +80,6 @@ Ragpi uses the following environment variables to configure its behavior. These 
 | `GITHUB_TOKEN`       | GitHub token for accessing repositories | None         |
 | `GITHUB_API_VERSION` | GitHub API version                      | `2022-11-28` |
 
-## Discord Configuration
-
-| Variable                  | Description                                                            | Default | Notes                                                                                |
-| ------------------------- | ---------------------------------------------------------------------- | ------- | ------------------------------------------------------------------------------------ |
-| `DISCORD_TOKEN`           | The discord bot token for authenticating with Discord                  | None    | **Required**                                                                         |
-| `DISCORD_CHANNEL_IDS`     | Comma-separated list of Discord channel IDs to listen on               | None    | **Required**                                                                         |
-| `RAGPI_BASE_URL`          | Base URL for Ragpi. All chat requests will be sent to this endpoint    | None    | **Required**                                                                         |
-| `RAGPI_API_KEY`           | API key for authenticating with Ragpi endpoints                        | None    | If provided, sets the `x-api-key` header on requests to Ragpi.                       |
-| `DISCORD_SOURCES`         | Comma-separated list of sources to pass to Ragpi for context retrieval | None    | If not set, will use all sources.                                                    |
-| `DISCORD_CHAT_MODEL`      | Name of the chat model to use                                          | None    | If not set, Ragpi's default model will be used.                                      |
-| `DISCORD_REQUIRE_MENTION` | Whether the bot requires a direct mention to respond                   | `true`  | Accepts `true`, `True`, or `TRUE` for enabled; anything else is treated as disabled. |
-
 ## OpenTelemetry Settings
 
 | Variable                      | Description                      | Default | Notes                                  |
