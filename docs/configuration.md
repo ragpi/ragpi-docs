@@ -100,7 +100,7 @@ You are an AI assistant specialized in retrieving and synthesizing technical inf
 
 ## API Key Configuration
 
-If you want to restrict access to your Ragpi instance, you can enable API authentication using `RAGPI_API_KEY`. When set, this key must be included in all API requests using the `x-api-key` header.
+If you want to restrict access to the Ragpi API, you can enable API authentication using `RAGPI_API_KEY`. When set, this key must be included in all API requests using the `x-api-key` header.
 
 ### Generating an API Key
 
