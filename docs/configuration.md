@@ -104,7 +104,7 @@ If you want to restrict access to your Ragpi instance, you can enable API authen
 
 ### Generating an API Key
 
-You can generate a secure API key using the following command:
+You can generate a secure API key using the following command in your terminal:
 
 ```bash
 openssl rand -hex 32

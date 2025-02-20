@@ -38,7 +38,7 @@ RAGPI_API_KEY=your_secret_api_key
 ```
 
 :::info
-If you would like to enable API authentication, set the `RAGPI_API_KEY` environment variable. You will need to [generate the key](/configuration#generating-an-api-key) yourself and include it in the `x-api-key` header for all requests.
+If you would like to enable API authentication, set the `RAGPI_API_KEY` environment variable to a [self-generated key](/configuration#generating-an-api-key). Include this key in the `x-api-key` header for all requests.
 :::
 
 4. Start Ragpi using Docker Compose:
