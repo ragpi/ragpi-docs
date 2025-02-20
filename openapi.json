@@ -3,7 +3,7 @@
   "info": {
     "title": "Ragpi",
     "summary": "Ragpi is an AI assistant specialized in retrieving and synthesizing technical information to provide relevant answers to queries.",
-    "version": "0.2.x"
+    "version": "v0.3.x"
   },
   "paths": {
     "/healthcheck": {
@@ -20,6 +20,7 @@
                 "example": {
                   "api": { "status": "ok" },
                   "redis": { "status": "ok" },
+                  "postgres": { "status": "ok" },
                   "workers": { "status": "ok", "active_workers": 2 }
                 }
               }
@@ -32,6 +33,10 @@
                 "example": {
                   "api": { "status": "ok" },
                   "redis": { "status": "error", "message": "Connection error" },
+                  "postgres": {
+                    "status": "error",
+                    "message": "Connection error or unexpected result"
+                  },
                   "workers": {
                     "status": "error",
                     "message": "No active workers found"
@@ -859,15 +864,10 @@
           "message": {
             "anyOf": [{ "type": "string" }, { "type": "null" }],
             "title": "Message"
-          },
-          "retrieved_documents": {
-            "items": { "$ref": "#/components/schemas/Document" },
-            "type": "array",
-            "title": "Retrieved Documents"
           }
         },
         "type": "object",
-        "required": ["message", "retrieved_documents"],
+        "required": ["message"],
         "title": "ChatResponse"
       },
       "CreateChatRequest": {
