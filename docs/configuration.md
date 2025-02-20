@@ -8,40 +8,40 @@ Ragpi uses the following environment variables to configure its behavior. These 
 
 ## Application Configuration
 
-| Variable                  | Description                                   | Default                                                                                                                             | Notes                                                                                                                                                                                    |
-| ------------------------- | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `PROJECT_NAME`            | Name of the project                           | `the current project`                                                                                                               | Used to scope and focus the AI assistant's responses                                                                                                                                     |
-| `PROJECT_DESCRIPTION`     | Description of the project                    | `determined by the available sources`                                                                                               | Defines the project's scope for the AI assistant                                                                                                                                         |
-| `RAGPI_VERSION`           | API version of Ragpi                          | `v0.2.x`                                                                                                                            | Used in the OpenAPI spec and in `docker-compose.prod.yml` to specify the Ragpi image version                                                                                             |
-| `API_NAME`                | Name of the API service                       | `Ragpi`                                                                                                                             | Used in the OpenAPI spec                                                                                                                                                                 |
-| `API_SUMMARY`             | Summary of the API service                    | `Ragpi is an AI assistant specialized in retrieving and synthesizing technical information to provide relevant answers to queries.` | Used in the OpenAPI spec                                                                                                                                                                 |
-| `API_KEYS`                | List of API keys for access (comma-separated) | None                                                                                                                                | If not set, the API will be accessible without authentication. To enable API key authentication, set this to a comma-separated list of self-generated API keys (e.g., `key1,key2,key3`). |
-| `WORKERS_ENABLED`         | Enable/disable background workers             | `True`                                                                                                                              | When disabled, endpoints requiring Celery workers will return a `503`                                                                                                                    |
-| `TASK_RETENTION_DAYS`     | Number of days to retain task history         | `7`                                                                                                                                 | -                                                                                                                                                                                        |
-| `LOG_LEVEL`               | Logging level                                 | `INFO`                                                                                                                              | Options: `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`                                                                                                                                 |
-| `USER_AGENT`              | User agent string for HTTP requests           | `Ragpi`                                                                                                                             | -                                                                                                                                                                                        |
-| `MAX_CONCURRENT_REQUESTS` | Maximum number of concurrent requests         | `10`                                                                                                                                | -                                                                                                                                                                                        |
+| Variable                  | Description                           | Default                                                                                                                             | Notes                                                                                                                                                                     |
+| ------------------------- | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `PROJECT_NAME`            | Name of the project                   | `the current project`                                                                                                               | Used to scope and focus the AI assistant's responses                                                                                                                      |
+| `PROJECT_DESCRIPTION`     | Description of the project            | `determined by the available sources`                                                                                               | Defines the project's scope for the AI assistant                                                                                                                          |
+| `RAGPI_VERSION`           | API version of Ragpi                  | `v0.2.x`                                                                                                                            | Used in the OpenAPI spec and in `docker-compose.prod.yml` to specify the Ragpi image version                                                                              |
+| `API_NAME`                | Name of the API service               | `Ragpi`                                                                                                                             | Used in the OpenAPI spec                                                                                                                                                  |
+| `API_SUMMARY`             | Summary of the API service            | `Ragpi is an AI assistant specialized in retrieving and synthesizing technical information to provide relevant answers to queries.` | Used in the OpenAPI spec                                                                                                                                                  |
+| `RAGPI_API_KEY`           | API key for authenticated requests    | None                                                                                                                                | If not set, the API will be accessible without authentication. When set, this key must be a self-generated secret and included in the `x-api-key` header of each request. |
+| `WORKERS_ENABLED`         | Enable/disable background workers     | `True`                                                                                                                              | When disabled, endpoints requiring Celery workers will return a `503`                                                                                                     |
+| `TASK_RETENTION_DAYS`     | Number of days to retain task history | `7`                                                                                                                                 | -                                                                                                                                                                         |
+| `LOG_LEVEL`               | Logging level                         | `INFO`                                                                                                                              | Options: `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`                                                                                                                  |
+| `USER_AGENT`              | User agent string for HTTP requests   | `Ragpi`                                                                                                                             | -                                                                                                                                                                         |
+| `MAX_CONCURRENT_REQUESTS` | Maximum number of concurrent requests | `10`                                                                                                                                | -                                                                                                                                                                         |
 
 ## Provider Configuration
 
-| Variable                               | Description                                             | Default  | Notes                                |
-| -------------------------------------- | ------------------------------------------------------- | -------- | ------------------------------------ |
-| `CHAT_PROVIDER`                        | Chat service provider. Options: `openai`, `ollama`      | `openai` | -                                    |
-| `EMBEDDING_PROVIDER`                   | Embedding service provider. Options: `openai`, `ollama` | `openai` | -                                    |
-| `OPENAI_API_KEY`                       | API key for OpenAI services                             | None     | Required if using OpenAI as provider |
-| `OLLAMA_BASE_URL`                      | Base URL for Ollama provider                            | None     | Required if using Ollama as provider |
-| `DEEPSEEK_API_KEY`                     | API key for DeepSeek services                           | None     | Optional                             |
-| `CHAT_OPENAI_COMPATIBLE_BASE_URL`      | Base URL for OpenAI-compatible chat models              | None     | Optional                             |
-| `CHAT_OPENAI_COMPATIBLE_API_KEY`       | API key for OpenAI-compatible chat models               | None     | Optional                             |
-| `EMBEDDING_OPENAI_COMPATIBLE_BASE_URL` | Base URL for OpenAI-compatible embedding models         | None     | Optional                             |
-| `EMBEDDING_OPENAI_COMPATIBLE_API_KEY`  | API key for OpenAI-compatible embedding models          | None     | Optional                             |
+| Variable                               | Description                                     | Default  | Notes                                                       |
+| -------------------------------------- | ----------------------------------------------- | -------- | ----------------------------------------------------------- |
+| `CHAT_PROVIDER`                        | Chat service provider                           | `openai` | Options: `openai`,`ollama`,`deepseek`,`openai_compatible`   |
+| `EMBEDDING_PROVIDER`                   | Embedding service provider                      | `openai` | Options: `openai`,`ollama`,`openai_compatible`              |
+| `OPENAI_API_KEY`                       | API key for OpenAI services                     | None     | Required if using `openai` as chat/embedding provider       |
+| `OLLAMA_BASE_URL`                      | Base URL for Ollama provider                    | None     | Required if using `ollama` as chat/embedding provider       |
+| `DEEPSEEK_API_KEY`                     | API key for DeepSeek services                   | None     | Required if using `deepseek` as chat provider               |
+| `CHAT_OPENAI_COMPATIBLE_BASE_URL`      | Base URL for OpenAI-compatible chat models      | None     | Required if using `openai_compatible` as chat provider      |
+| `CHAT_OPENAI_COMPATIBLE_API_KEY`       | API key for OpenAI-compatible chat models       | None     | Required if using `openai_compatible` as chat provider      |
+| `EMBEDDING_OPENAI_COMPATIBLE_BASE_URL` | Base URL for OpenAI-compatible embedding models | None     | Required if using `openai_compatible` as embedding provider |
+| `EMBEDDING_OPENAI_COMPATIBLE_API_KEY`  | API key for OpenAI-compatible embedding models  | None     | Required if using `openai_compatible` as embedding provider |
 
 ## Database Configuration
 
 | Variable                    | Description                                    | Default                             | Notes                                                                                    |
 | --------------------------- | ---------------------------------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------- |
 | `REDIS_URL`                 | Redis connection URL                           | `redis://localhost:6379`            | **Required**                                                                             |
-| `POSTGRES_URL`              | PostgreSQL database URL                        | `postgresql://localhost:5432/ragpi` | Required if using postgres backend                                                       |
+| `POSTGRES_URL`              | PostgreSQL database URL                        | `postgresql://localhost:5432/ragpi` | **Required if using postgres backend**                                                   |
 | `DOCUMENT_STORE_BACKEND`    | Document store backend (`postgres`, `redis`)   | `postgres`                          | -                                                                                        |
 | `DOCUMENT_STORE_NAMESPACE`  | Namespace for document storage                 | `document_store`                    | When using `postgres`, this is the table name; when using `redis`, it is the key prefix. |
 | `SOURCE_METADATA_BACKEND`   | Metadata storage backend (`postgres`, `redis`) | `postgres`                          | -                                                                                        |
@@ -96,4 +96,16 @@ The default value for `BASE_SYSTEM_PROMPT` is:
 
 ```
 You are an AI assistant specialized in retrieving and synthesizing technical information to provide relevant answers to queries.
+```
+
+## API Key Configuration
+
+If you want to restrict access to your Ragpi instance, you can enable API authentication using `RAGPI_API_KEY`. When set, this key must be included in all API requests using the `x-api-key` header.
+
+### Generating an API Key
+
+You can generate a secure API key using the following command:
+
+```bash
+openssl rand -hex 32
 ```

@@ -34,11 +34,11 @@ cp .env.example .env
 OPENAI_API_KEY=your_api_key_here
 
 # Optional: Add API authentication
-API_KEYS=your_secret_api_key
+RAGPI_API_KEY=your_secret_api_key
 ```
 
 :::info
-If you would like to enable API authentication, add a comma-separated list of keys to the `API_KEYS` variable. You will need to generate these keys yourself and include them in the `x-api-key` header for all requests.
+If you would like to enable API authentication, set the `RAGPI_API_KEY` environment variable. You will need to [generate the key](/configuration#generating-an-api-key) yourself and include it in the `x-api-key` header for all requests.
 :::
 
 4. Start Ragpi using Docker Compose:
