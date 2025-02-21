@@ -38,13 +38,21 @@ git clone https://github.com/ragpi/ragpi.git
 cd ragpi
 ```
 
-2. Set up environment variables:
+2. Copy the example environment file and open it for editing:
 
 ```bash
 cp .env.example .env
 ```
 
-3. Configure the `.env` file with your settings. Refer to the [Configuration](/configuration) page for details on each environment variable.
+3. Update the `.env` file with your desired configuration. Refer to the [Configuration](/configuration) page to see all available environment variables. At a minimum, you should set the `OPENAI_API_KEY` variable to your OpenAI API key.
+
+```env
+# Required unless using a different chat/embedding provider
+OPENAI_API_KEY=your_api_key_here
+
+# Optional: Add API authentication
+RAGPI_API_KEY=your_secret_api_key
+```
 
 4. Start the services using Docker Compose:
 
@@ -77,7 +85,7 @@ Ragpi supports various integrations that can be deployed alongside the core serv
 For all integrations:
 
 - `RAGPI_BASE_URL` - Already set to the API service URL by default in the Docker Compose configuration
-- `RAGPI_API_KEY` - API key to authenticate with the Ragpi API. Set this to one of the values defined in the `API_KEYS` environment variable (Required only if API authentication is enabled)
+- `RAGPI_API_KEY` - If [API authentication is enabled](/configuration#api-key-configuration), this variable should already be set in the `.env` file and the integrations will use it for authentication
 
 #### Integration-Specific Configuration
 
