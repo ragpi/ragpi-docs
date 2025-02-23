@@ -1,15 +1,16 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
+title: Docker
 ---
 
-# Deployment
+# Docker Deployment
 
 Ragpi's Docker-based deployment method provides flexibility in where you can host the application. This guide walks through deploying Ragpi using Docker Compose, which can be used across various hosting environments including:
 
 - Local development environments
-- Virtual Private Servers (VPS) from providers like DigitalOcean, Linode, or Vultr
+- Virtual Private Servers (VPS) from providers like DigitalOcean, Linode, or Hetzner
 - Cloud compute instances from AWS EC2, Google Compute Engine, or Azure Virtual Machines
-- Self-hosted servers or bare metal installations
+- Dedicated servers or on-premises hardware
 
 The deployment process remains consistent across these environments, making it easy to migrate between platforms as your needs evolve. The only requirements are Docker, Docker Compose, and Git access on your chosen platform.
 
@@ -76,7 +77,7 @@ By default, all services are configured to only listen on localhost (127.0.0.1) 
 - Use a reverse proxy like Nginx, a tunneling service like Cloudflare Tunnel, or a similar method to securely expose the API service. (Recommended for production)
   :::
 
-### Integration Deployments
+### Integrations
 
 Ragpi supports various integrations that can be deployed alongside the core services. Each integration requires additional configuration in your `.env` file and uses a specific Docker Compose profile.
 

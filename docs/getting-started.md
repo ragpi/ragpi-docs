@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1.5
+sidebar_position: 2
 ---
 
 # Getting Started
@@ -102,4 +102,4 @@ The response will include Ragpi's answer, synthesized from the relevant document
 - **Customize your configuration**: [Configuration Guide](/configuration)
 - **Check the API reference**: [API Reference](/api)
 - **Set up the Discord integration**: [Discord Integration Guide](/integrations/discord)
-- **Deploy Ragpi in production**: [Deployment Guide](/deployment)
+- **Deploy Ragpi in production**: [Deployment Options](/deployment)

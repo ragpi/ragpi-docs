@@ -11,9 +11,11 @@ Ragpi supports multiple Large Language Model (LLM) providers for chat and embedd
 You can specify which providers to use via environment variables:
 
 ```env
-CHAT_PROVIDER=openai | ollama | deepseek | openai_compatible
-EMBEDDING_PROVIDER=openai | ollama | openai_compatible
+CHAT_PROVIDER = openai | ollama | deepseek | openai_compatible
+EMBEDDING_PROVIDER = openai | ollama | openai_compatible
 ```
+
+Each provider has its own set of configuration options. You can find the configuration options for each provider under their respective pages.
 
 ## General Configuration
 

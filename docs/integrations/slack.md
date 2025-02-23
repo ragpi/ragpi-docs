@@ -58,8 +58,9 @@ Ragpi's Slack integration allows you to easily connect your technical documentat
 
 ### 3. Deploy Ragpi with Slack Integration
 
-Refer to the [Deployment documentation](/deployment) for instructions on deploying Ragpi with the Slack integration.
-Ensure that your `.env` file includes:
+Refer to the [Deployment documentation](/deployment) to choose a deployment method and deploy Ragpi with the Slack integration.
+
+Ensure that the following environment variables are configured when deploying the Slack integration:
 
 ```env
 SLACK_APP_TOKEN=your-app-token

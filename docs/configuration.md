@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Configuration
@@ -75,10 +75,10 @@ Ragpi uses the following environment variables to configure its behavior. These 
 
 ## GitHub
 
-| Variable             | Description                             | Default      |
-| -------------------- | --------------------------------------- | ------------ |
-| `GITHUB_TOKEN`       | GitHub token for accessing repositories | None         |
-| `GITHUB_API_VERSION` | GitHub API version                      | `2022-11-28` |
+| Variable             | Description                            | Default      |
+| -------------------- | -------------------------------------- | ------------ |
+| `GITHUB_TOKEN`       | GitHub token used by GitHub connectors | None         |
+| `GITHUB_API_VERSION` | GitHub API version                     | `2022-11-28` |
 
 ## OpenTelemetry Settings
 
