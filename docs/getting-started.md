@@ -33,6 +33,9 @@ cp .env.example .env
 # Add your OpenAI API key
 OPENAI_API_KEY=your_api_key_here
 
+# Optional: Add your GtiHub Token if using a GitHub connector
+GITHUB_TOKEN=your_github_token
+
 # Optional: Add API authentication
 RAGPI_API_KEY=your_secret_api_key
 ```
