@@ -30,12 +30,17 @@ Ragpi's Slack integration allows you to easily connect your technical documentat
   },
   "oauth_config": {
     "scopes": {
-      "bot": ["channels:history", "groups:history", "chat:write"]
+      "bot": [
+        "channels:history",
+        "chat:write",
+        "groups:history",
+        "app_mentions:read"
+      ]
     }
   },
   "settings": {
     "event_subscriptions": {
-      "bot_events": ["message.channels", "message.groups"]
+      "bot_events": ["app_mention", "message.channels", "message.groups"]
     },
     "interactivity": {
       "is_enabled": true
@@ -71,12 +76,17 @@ SLACK_BOT_TOKEN=your-bot-token
 
 After configuring the bot and deploying Ragpi, the bot will be available in your Slack workspace. You can invite it to the channels you want it to respond in by mentioning it in the desired channel. When asked a question, the bot will respond in a thread to keep conversations organized.
 
+:::important
+By default, the bot will reply to all messages in the channels it has been invited to. If you want to restrict the bot to only respond to messages that mention it, set the `SLACK_REQUIRE_MENTION` environment variable to `true`.
+:::
+
 ## Configuration
 
-| Variable          | Description                                                            | Default | Notes                                                              |
-| ----------------- | ---------------------------------------------------------------------- | ------- | ------------------------------------------------------------------ |
-| `SLACK_BOT_TOKEN` | The slack bot token for authenticating with Slack                      | None    | **Required**                                                       |
-| `SLACK_APP_TOKEN` | The slack app token for authenticating with Slack                      | None    | **Required**                                                       |
-| `RAGPI_BASE_URL`  | Base URL for Ragpi. All chat requests will be sent to this endpoint    | None    | **Required**                                                       |
-| `RAGPI_API_KEY`   | API key for authenticating with Ragpi endpoints                        | None    | If provided, sets the `x-api-key` header on requests to Ragpi API. |
-| `RAGPI_SOURCES`   | Comma-separated list of sources to pass to Ragpi for context retrieval | None    | If not set, will use all sources.                                  |
+| Variable                | Description                                                            | Default | Notes                                                                                |
+| ----------------------- | ---------------------------------------------------------------------- | ------- | ------------------------------------------------------------------------------------ |
+| `SLACK_BOT_TOKEN`       | The slack bot token for authenticating with Slack                      | None    | **Required**                                                                         |
+| `SLACK_APP_TOKEN`       | The slack app token for authenticating with Slack                      | None    | **Required**                                                                         |
+| `RAGPI_BASE_URL`        | Base URL for Ragpi. All chat requests will be sent to this endpoint    | None    | **Required**                                                                         |
+| `RAGPI_API_KEY`         | API key for authenticating with Ragpi endpoints                        | None    | If provided, sets the `x-api-key` header on requests to Ragpi API.                   |
+| `RAGPI_SOURCES`         | Comma-separated list of sources to pass to Ragpi for context retrieval | None    | If not set, will use all sources.                                                    |
+| `SLACK_REQUIRE_MENTION` | Whether the bot requires a direct mention to respond                   | `false` | Accepts `true`, `True`, or `TRUE` for enabled; anything else is treated as disabled. |
