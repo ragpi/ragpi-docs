@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Getting Started
 
-This guide will help you get Ragpi up and running in minutes. We'll walk through deploying Ragpi locally, adding your first documentation source, and making your first query.
+This is a quick guide to get you started with Ragpi locally. To deploy Ragpi to a production environment, refer to the [Deployment Documentation](/deployment) to learn more about different deployment options. If you would like to contribute to Ragpi, refer to the [Contributing Guidelines](https://github.com/ragpi/ragpi/blob/main/CONTRIBUTING.md) for detailed instructions on setting up your development environment.
 
 ## Prerequisites
 
@@ -97,7 +97,7 @@ curl -X POST http://localhost:8000/chat \
   }'
 ```
 
-The response will include Ragpi's answer, synthesized from the relevant documentation it found. Since no sources are specified, Ragpi will query all available sources. If you want to limit the search to a specific source, you can include the `source` field in the request body.
+The response will include Ragpi's answer, synthesized from the relevant documentation it found. Since no sources are specified, Ragpi will query all available sources. If you want to limit the search to a specific source, you can include the `sources` field in the request body.
 
 ## Next Steps
 

@@ -41,9 +41,7 @@ Ragpi is an open-source AI assistant API that leverages LLMs to search and answe
 
 3. **Chat with the AI Assistant**:
 
-   - Use the [`/chat`](/api#tag/Chat/operation/chat_chat_post) endpoint to query the AI assistant using the configured sources.
-   - If no sources are specified in the payload, all available sources will be used.
-   - Example payload:
+   - Use the [`/chat`](/api#tag/Chat/operation/chat_chat_post) endpoint to query the AI assistant using the configured sources:
      ```json
      {
        "sources": ["example-docs"],
@@ -52,3 +50,4 @@ Ragpi is an open-source AI assistant API that leverages LLMs to search and answe
        ]
      }
      ```
+   - You can also interact with the AI assistant through the [Discord](/integrations/discord) or [Slack](/integrations/slack) integration.
