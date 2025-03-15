@@ -82,13 +82,15 @@ Ragpi uses the following environment variables to configure its behavior. These 
 
 ## OpenTelemetry Settings
 
-| Variable                      | Description                      | Default | Notes                                  |
-| ----------------------------- | -------------------------------- | ------- | -------------------------------------- |
-| `OTEL_ENABLED`                | Enable/disable OpenTelemetry     | `False` | -                                      |
-| `OTEL_SERVICE_NAME`           | Service name for OpenTelemetry   | `ragpi` | -                                      |
-| `OTEL_EXPORTER_OTLP_ENDPOINT` | OpenTelemetry collector endpoint | None    | Required when OpenTelemetry is enabled |
+| Variable                      | Description                      | Default                 |
+| ----------------------------- | -------------------------------- | ----------------------- |
+| `OTEL_ENABLED`                | Enable/disable OpenTelemetry     | `False`                 |
+| `OTEL_SERVICE_NAME`           | Service name for OpenTelemetry   | `ragpi`                 |
+| `OTEL_EXPORTER_OTLP_ENDPOINT` | OpenTelemetry collector endpoint | `http://localhost:4318` |
 
 When enabled, Ragpi provides basic tracing capabilities through OpenTelemetry instrumentation using the `http/protobuf` protocol. This includes automatic tracing of FastAPI endpoints and LLM API calls, with spans exported to the endpoint specified in `OTEL_EXPORTER_OTLP_ENDPOINT`.
+
+Additionally, Ragpi respects any standard OTEL environment variables (e.g., `OTEL_RESOURCE_ATTRIBUTES`, `OTEL_EXPORTER_OTLP_HEADERS`, etc.) supported by the OpenTelemetry specification.
 
 ## Default System Prompt
 
