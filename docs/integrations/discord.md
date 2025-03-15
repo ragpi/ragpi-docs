@@ -30,7 +30,7 @@ Ragpi's Discord integration allows you to easily connect your technical document
 
 ### 4. Configure Your Server
 
-1. In Discord, create a new channel or use an existing one. I recommend creating a dedicated [Forum Channel](https://support.discord.com/hc/en-us/articles/6208479917079-Forum-Channels-FAQ) for the bot. To set up a forum channel, you will need to [Enable Community](https://support.discord.com/hc/en-us/articles/360047132851-Enabling-Your-Community-Server) in your server if you haven't already.
+1. In Discord, create a new channel or use an existing one. I recommend creating a dedicated [Forum Channel](https://support.discord.com/hc/en-us/articles/6208479917079-Forum-Channels-FAQ) for the bot, e.g. `ask-ai. To set up a forum channel, you will need to [Enable Community](https://support.discord.com/hc/en-us/articles/360047132851-Enabling-Your-Community-Server) in your server if you haven't already.
 2. Right-click on the channel and select **Copy Server ID** to obtain the channel ID.
 3. If you want the bot to operate in multiple channels, separate the channel IDs with commas in the `DISCORD_CHANNEL_IDS` environment variable.
 
