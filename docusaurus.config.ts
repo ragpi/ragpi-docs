@@ -18,6 +18,16 @@ const config: Config = {
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
 
+  scripts: [
+    {
+      src: "https://cdn.jsdelivr.net/gh/ragpi/ragpi-web-widget@v0.1.0-rc.1/dist/ragpi-widget.js",
+      defer: true,
+      "data-recaptcha-site-key": "6LfTvhUrAAAAANvNg3YagHXA5one_uRC_2vHriNk",
+      "data-ragpi-gateway-url": "https://staging-gateway.ragpi.dev/chat",
+      "data-ragpi-sources": "ragpi_docs",
+    },
+  ],
+
   i18n: {
     defaultLocale: "en",
     locales: ["en"],
