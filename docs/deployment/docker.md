@@ -121,7 +121,6 @@ Ensure you have created a Google reCAPTCHA v3 key. See the [Web Widget Integrati
 
 Required environment variables:
 
-- `RECAPTCHA_SITE_KEY` - Google reCAPTCHA v3 site key
 - `RECAPTCHA_SECRET_KEY` - Google reCAPTCHA v3 secret key
 
 See [Web Widget Configuration](/integrations/web-widget#configuration) for additional options.
