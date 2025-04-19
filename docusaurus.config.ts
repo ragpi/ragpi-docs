@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
@@ -17,6 +18,16 @@ const config: Config = {
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
+
+  scripts: [
+    {
+      src: "https://cdn.jsdelivr.net/gh/ragpi/ragpi-web-widget@v0.1.0/dist/ragpi-widget.js",
+      defer: true,
+      "data-recaptcha-site-key": process.env.RECAPTCHA_SITE_KEY,
+      "data-ragpi-gateway-url": process.env.RAGPI_GATEWAY_URL,
+      "data-ragpi-sources": "ragpi_docs",
+    },
+  ],
 
   i18n: {
     defaultLocale: "en",
