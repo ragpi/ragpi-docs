@@ -21,7 +21,7 @@ const config: Config = {
 
   scripts: [
     {
-      src: "https://cdn.jsdelivr.net/gh/ragpi/ragpi-web-widget@v0.1.0/dist/ragpi-widget.js",
+      src: "https://cdn.jsdelivr.net/gh/ragpi/ragpi-web-widget@v0.1.1/dist/ragpi-widget.js",
       defer: true,
       "data-recaptcha-site-key": process.env.RECAPTCHA_SITE_KEY,
       "data-ragpi-gateway-url": process.env.RAGPI_GATEWAY_URL,

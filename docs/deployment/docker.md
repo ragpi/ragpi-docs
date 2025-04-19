@@ -115,29 +115,48 @@ Required environment variables:
 
 See [Slack Configuration](/integrations/slack#configuration) for additional options.
 
-#### Deployment Examples
+##### Recaptcha Gateway (for Web Widget Integration)
 
-Deploy with a single integration:
+Ensure you have created a Google reCAPTCHA v3 key. See the [Web Widget Integration](/integrations/web-widget) page for detailed instructions.
+
+Required environment variables:
+
+- `RECAPTCHA_SITE_KEY` - Google reCAPTCHA v3 site key
+- `RECAPTCHA_SECRET_KEY` - Google reCAPTCHA v3 secret key
+
+See [Web Widget Configuration](/integrations/web-widget#configuration) for additional options.
+
+:::important
+Similar to the API service, the Recaptcha Gateway service is configured to only listen on localhost (127.0.0.1) for security. To expose the Recaptcha Gateway service to external traffic, you can either:
+
+- Add the `DOCKER_RECAPTCHA_GATEWAY_PORT_MAPPING` environment variable to the `.env` file with the value `0.0.0.0:8000:8000` to expose the API service on port 8000. (Not recommended for production)
+- Use a reverse proxy like Nginx, a tunneling service like Cloudflare Tunnel, or a similar method to securely expose the API service. (Recommended for production)
+  :::
+
+#### Deploying Integrations
+
+Profiles are used to manage different integrations in the Docker Compose file. You can deploy Ragpi with specific integrations by using the `--profile` flag. Profile options include:
+
+- `discord` - Deploys the Discord integration
+- `slack` - Deploys the Slack integration
+- `recaptcha-gateway` - Deploys the Recaptcha Gateway (for Web Widget integration)
+
+Deploy with a single integration, e.g., Discord:
 
 ```bash
-# Discord only
 docker compose -f docker-compose.prod.yml --profile discord up -d
-
-# Slack only
-docker compose -f docker-compose.prod.yml --profile slack up -d
 ```
 
 To deploy with multiple integrations, you'll need to specify each profile with its own `--profile` flag:
 
 ```bash
-# Both Discord and Slack
-docker compose -f docker-compose.prod.yml --profile discord --profile slack up -d
+docker compose -f docker-compose.prod.yml --profile slack --profile recaptcha-gateway up -d
 ```
 
 Alternatively, you can use the `COMPOSE_PROFILES` environment variable with a comma-separated list:
 
 ```bash
-COMPOSE_PROFILES=discord,slack docker compose -f docker-compose.prod.yml up -d
+COMPOSE_PROFILES=discord,recaptcha-gateway docker compose -f docker-compose.prod.yml up -d
 ```
 
 ### Stopping Services
@@ -152,7 +171,7 @@ docker compose -f docker-compose.prod.yml down
 docker compose -f docker-compose.prod.yml --profile discord down
 
 # Stop with multiple profiles
-docker compose -f docker-compose.prod.yml --profile discord --profile slack down
+docker compose -f docker-compose.prod.yml --profile discord --profile recaptcha-gateway down
 ```
 
 ## Custom Deployment
