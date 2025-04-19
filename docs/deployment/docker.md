@@ -170,7 +170,7 @@ docker compose -f docker-compose.prod.yml down
 docker compose -f docker-compose.prod.yml --profile discord down
 
 # Stop with multiple profiles
-docker compose -f docker-compose.prod.yml --profile discord --profile recaptcha-gateway down
+docker compose -f docker-compose.prod.yml --profile slack --profile recaptcha-gateway down
 ```
 
 ## Custom Deployment
