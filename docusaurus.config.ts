@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
@@ -20,10 +21,10 @@ const config: Config = {
 
   scripts: [
     {
-      src: "https://cdn.jsdelivr.net/gh/ragpi/ragpi-web-widget@v0.1.0-rc.1/dist/ragpi-widget.js",
+      src: "https://cdn.jsdelivr.net/gh/ragpi/ragpi-web-widget@v0.1.1/dist/ragpi-widget.js",
       defer: true,
-      "data-recaptcha-site-key": "6LfTvhUrAAAAANvNg3YagHXA5one_uRC_2vHriNk",
-      "data-ragpi-gateway-url": "https://staging-gateway.ragpi.dev/chat",
+      "data-recaptcha-site-key": process.env.RECAPTCHA_SITE_KEY,
+      "data-ragpi-gateway-url": process.env.RAGPI_GATEWAY_URL,
       "data-ragpi-sources": "ragpi_docs",
     },
   ],
