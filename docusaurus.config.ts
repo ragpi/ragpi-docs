@@ -20,13 +20,13 @@ const config: Config = {
   onBrokenMarkdownLinks: "warn",
 
   scripts: [
-    {
-      src: "https://cdn.jsdelivr.net/gh/ragpi/ragpi-web-widget@v0.1.1/dist/ragpi-widget.js",
-      defer: true,
-      "data-recaptcha-site-key": process.env.RECAPTCHA_SITE_KEY,
-      "data-ragpi-gateway-url": process.env.RAGPI_GATEWAY_URL,
-      "data-ragpi-sources": "ragpi_docs",
-    },
+    // {
+    //   src: "https://cdn.jsdelivr.net/gh/ragpi/ragpi-web-widget@v0.1.1/dist/ragpi-widget.js",
+    //   defer: true,
+    //   "data-recaptcha-site-key": process.env.RECAPTCHA_SITE_KEY,
+    //   "data-ragpi-gateway-url": process.env.RAGPI_GATEWAY_URL,
+    //   "data-ragpi-sources": "ragpi_docs",
+    // },
   ],
 
   i18n: {
