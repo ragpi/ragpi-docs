@@ -3,7 +3,7 @@
   "info": {
     "title": "Ragpi",
     "summary": "An open-source AI assistant answering questions using your docs",
-    "version": "v0.3.x"
+    "version": "v0.4.x"
   },
   "paths": {
     "/healthcheck": {
@@ -18,10 +18,19 @@
               "application/json": {
                 "schema": {},
                 "example": {
-                  "api": { "status": "ok" },
-                  "redis": { "status": "ok" },
-                  "postgres": { "status": "ok" },
-                  "workers": { "status": "ok", "active_workers": 2 }
+                  "api": {
+                    "status": "ok"
+                  },
+                  "redis": {
+                    "status": "ok"
+                  },
+                  "postgres": {
+                    "status": "ok"
+                  },
+                  "workers": {
+                    "status": "ok",
+                    "active_workers": 2
+                  }
                 }
               }
             }
@@ -31,8 +40,13 @@
             "content": {
               "application/json": {
                 "example": {
-                  "api": { "status": "ok" },
-                  "redis": { "status": "error", "message": "Connection error" },
+                  "api": {
+                    "status": "ok"
+                  },
+                  "redis": {
+                    "status": "error",
+                    "message": "Connection error"
+                  },
                   "postgres": {
                     "status": "error",
                     "message": "Connection error or unexpected result"
@@ -49,7 +63,9 @@
             "description": "Internal server error",
             "content": {
               "application/json": {
-                "example": { "detail": "An unexpected error occurred" }
+                "example": {
+                  "detail": "An unexpected error occurred"
+                }
               }
             }
           },
@@ -72,7 +88,11 @@
             }
           }
         },
-        "security": [{ "APIKeyHeader": [] }]
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ]
       }
     },
     "/sources": {
@@ -86,7 +106,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "items": { "$ref": "#/components/schemas/SourceMetadata" },
+                  "items": {
+                    "$ref": "#/components/schemas/SourceMetadata"
+                  },
                   "type": "array",
                   "title": "Response List Sources Sources Get"
                 }
@@ -97,7 +119,9 @@
             "description": "Service unavailable",
             "content": {
               "application/json": {
-                "example": { "detail": "Service unavailable" }
+                "example": {
+                  "detail": "Service unavailable"
+                }
               }
             }
           },
@@ -105,7 +129,9 @@
             "description": "Internal server error",
             "content": {
               "application/json": {
-                "example": { "detail": "An unexpected error occurred" }
+                "example": {
+                  "detail": "An unexpected error occurred"
+                }
               }
             }
           },
@@ -128,7 +154,11 @@
             }
           }
         },
-        "security": [{ "APIKeyHeader": [] }]
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ]
       },
       "post": {
         "tags": ["Sources"],
@@ -137,7 +167,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/CreateSourceRequest" }
+              "schema": {
+                "$ref": "#/components/schemas/CreateSourceRequest"
+              }
             }
           },
           "required": true
@@ -147,7 +179,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/SourceTask" }
+                "schema": {
+                  "$ref": "#/components/schemas/SourceTask"
+                }
               }
             }
           },
@@ -155,7 +189,9 @@
             "description": "Service unavailable",
             "content": {
               "application/json": {
-                "example": { "detail": "Service unavailable" }
+                "example": {
+                  "detail": "Service unavailable"
+                }
               }
             }
           },
@@ -163,7 +199,9 @@
             "description": "Internal server error",
             "content": {
               "application/json": {
-                "example": { "detail": "An unexpected error occurred" }
+                "example": {
+                  "detail": "An unexpected error occurred"
+                }
               }
             }
           },
@@ -189,12 +227,18 @@
             "description": "Source already exists",
             "content": {
               "application/json": {
-                "example": { "detail": "Source 'example' already exists" }
+                "example": {
+                  "detail": "Source 'example' already exists"
+                }
               }
             }
           }
         },
-        "security": [{ "APIKeyHeader": [] }]
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ]
       }
     },
     "/sources/{source_name}": {
@@ -202,13 +246,20 @@
         "tags": ["Sources"],
         "summary": "Get Source",
         "operationId": "get_source_sources__source_name__get",
-        "security": [{ "APIKeyHeader": [] }],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
         "parameters": [
           {
             "name": "source_name",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "title": "Source Name" }
+            "schema": {
+              "type": "string",
+              "title": "Source Name"
+            }
           }
         ],
         "responses": {
@@ -216,7 +267,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/SourceMetadata" }
+                "schema": {
+                  "$ref": "#/components/schemas/SourceMetadata"
+                }
               }
             }
           },
@@ -224,7 +277,9 @@
             "description": "Service unavailable",
             "content": {
               "application/json": {
-                "example": { "detail": "Service unavailable" }
+                "example": {
+                  "detail": "Service unavailable"
+                }
               }
             }
           },
@@ -232,7 +287,9 @@
             "description": "Internal server error",
             "content": {
               "application/json": {
-                "example": { "detail": "An unexpected error occurred" }
+                "example": {
+                  "detail": "An unexpected error occurred"
+                }
               }
             }
           },
@@ -258,7 +315,9 @@
             "description": "Source not found",
             "content": {
               "application/json": {
-                "example": { "detail": "Source 'example' not found" }
+                "example": {
+                  "detail": "Source 'example' not found"
+                }
               }
             }
           }
@@ -268,20 +327,29 @@
         "tags": ["Sources"],
         "summary": "Update Source",
         "operationId": "update_source_sources__source_name__put",
-        "security": [{ "APIKeyHeader": [] }],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
         "parameters": [
           {
             "name": "source_name",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "title": "Source Name" }
+            "schema": {
+              "type": "string",
+              "title": "Source Name"
+            }
           }
         ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/UpdateSourceRequest" }
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSourceRequest"
+              }
             }
           }
         },
@@ -290,7 +358,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/SourceTask" }
+                "schema": {
+                  "$ref": "#/components/schemas/SourceTask"
+                }
               }
             }
           },
@@ -298,7 +368,9 @@
             "description": "Service unavailable",
             "content": {
               "application/json": {
-                "example": { "detail": "Service unavailable" }
+                "example": {
+                  "detail": "Service unavailable"
+                }
               }
             }
           },
@@ -306,7 +378,9 @@
             "description": "Internal server error",
             "content": {
               "application/json": {
-                "example": { "detail": "An unexpected error occurred" }
+                "example": {
+                  "detail": "An unexpected error occurred"
+                }
               }
             }
           },
@@ -332,7 +406,9 @@
             "description": "Source not found",
             "content": {
               "application/json": {
-                "example": { "detail": "Source 'example' not found" }
+                "example": {
+                  "detail": "Source 'example' not found"
+                }
               }
             }
           },
@@ -340,7 +416,9 @@
             "description": "Source locked",
             "content": {
               "application/json": {
-                "example": { "detail": "Source 'example' is locked" }
+                "example": {
+                  "detail": "Source 'example' is locked"
+                }
               }
             }
           }
@@ -350,22 +428,33 @@
         "tags": ["Sources"],
         "summary": "Delete Source",
         "operationId": "delete_source_sources__source_name__delete",
-        "security": [{ "APIKeyHeader": [] }],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
         "parameters": [
           {
             "name": "source_name",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "title": "Source Name" }
+            "schema": {
+              "type": "string",
+              "title": "Source Name"
+            }
           }
         ],
         "responses": {
-          "204": { "description": "Successful Response" },
+          "204": {
+            "description": "Successful Response"
+          },
           "503": {
             "description": "Service unavailable",
             "content": {
               "application/json": {
-                "example": { "detail": "Service unavailable" }
+                "example": {
+                  "detail": "Service unavailable"
+                }
               }
             }
           },
@@ -373,7 +462,9 @@
             "description": "Internal server error",
             "content": {
               "application/json": {
-                "example": { "detail": "An unexpected error occurred" }
+                "example": {
+                  "detail": "An unexpected error occurred"
+                }
               }
             }
           },
@@ -399,7 +490,9 @@
             "description": "Source not found",
             "content": {
               "application/json": {
-                "example": { "detail": "Source 'example' not found" }
+                "example": {
+                  "detail": "Source 'example' not found"
+                }
               }
             }
           },
@@ -407,7 +500,9 @@
             "description": "Source locked",
             "content": {
               "application/json": {
-                "example": { "detail": "Source 'example' is locked" }
+                "example": {
+                  "detail": "Source 'example' is locked"
+                }
               }
             }
           }
@@ -419,25 +514,40 @@
         "tags": ["Sources"],
         "summary": "Get Source Documents",
         "operationId": "get_source_documents_sources__source_name__documents_get",
-        "security": [{ "APIKeyHeader": [] }],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
         "parameters": [
           {
             "name": "source_name",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "title": "Source Name" }
+            "schema": {
+              "type": "string",
+              "title": "Source Name"
+            }
           },
           {
             "name": "limit",
             "in": "query",
             "required": false,
-            "schema": { "type": "integer", "default": 100, "title": "Limit" }
+            "schema": {
+              "type": "integer",
+              "default": 100,
+              "title": "Limit"
+            }
           },
           {
             "name": "offset",
             "in": "query",
             "required": false,
-            "schema": { "type": "integer", "default": 0, "title": "Offset" }
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "title": "Offset"
+            }
           }
         ],
         "responses": {
@@ -447,7 +557,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/Document" },
+                  "items": {
+                    "$ref": "#/components/schemas/Document"
+                  },
                   "title": "Response Get Source Documents Sources  Source Name  Documents Get"
                 }
               }
@@ -457,7 +569,9 @@
             "description": "Service unavailable",
             "content": {
               "application/json": {
-                "example": { "detail": "Service unavailable" }
+                "example": {
+                  "detail": "Service unavailable"
+                }
               }
             }
           },
@@ -465,7 +579,9 @@
             "description": "Internal server error",
             "content": {
               "application/json": {
-                "example": { "detail": "An unexpected error occurred" }
+                "example": {
+                  "detail": "An unexpected error occurred"
+                }
               }
             }
           },
@@ -491,7 +607,9 @@
             "description": "Source not found",
             "content": {
               "application/json": {
-                "example": { "detail": "Source 'example' not found" }
+                "example": {
+                  "detail": "Source 'example' not found"
+                }
               }
             }
           }
@@ -503,25 +621,39 @@
         "tags": ["Sources"],
         "summary": "Search Source",
         "operationId": "search_source_sources__source_name__search_get",
-        "security": [{ "APIKeyHeader": [] }],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
         "parameters": [
           {
             "name": "source_name",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "title": "Source Name" }
+            "schema": {
+              "type": "string",
+              "title": "Source Name"
+            }
           },
           {
             "name": "query",
             "in": "query",
             "required": true,
-            "schema": { "type": "string", "title": "Query" }
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
           },
           {
             "name": "top_k",
             "in": "query",
             "required": false,
-            "schema": { "type": "integer", "default": 10, "title": "Top K" }
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "title": "Top K"
+            }
           }
         ],
         "responses": {
@@ -531,7 +663,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/Document" },
+                  "items": {
+                    "$ref": "#/components/schemas/Document"
+                  },
                   "title": "Response Search Source Sources  Source Name  Search Get"
                 }
               }
@@ -541,7 +675,9 @@
             "description": "Service unavailable",
             "content": {
               "application/json": {
-                "example": { "detail": "Service unavailable" }
+                "example": {
+                  "detail": "Service unavailable"
+                }
               }
             }
           },
@@ -549,7 +685,9 @@
             "description": "Internal server error",
             "content": {
               "application/json": {
-                "example": { "detail": "An unexpected error occurred" }
+                "example": {
+                  "detail": "An unexpected error occurred"
+                }
               }
             }
           },
@@ -575,7 +713,9 @@
             "description": "Source not found",
             "content": {
               "application/json": {
-                "example": { "detail": "Source 'example' not found" }
+                "example": {
+                  "detail": "Source 'example' not found"
+                }
               }
             }
           }
@@ -590,7 +730,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/CreateChatRequest" }
+              "schema": {
+                "$ref": "#/components/schemas/CreateChatRequest"
+              }
             }
           },
           "required": true
@@ -600,7 +742,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/ChatResponse" }
+                "schema": {
+                  "$ref": "#/components/schemas/ChatResponse"
+                }
               }
             }
           },
@@ -608,7 +752,9 @@
             "description": "Service unavailable",
             "content": {
               "application/json": {
-                "example": { "detail": "Service unavailable" }
+                "example": {
+                  "detail": "Service unavailable"
+                }
               }
             }
           },
@@ -616,7 +762,9 @@
             "description": "Internal server error",
             "content": {
               "application/json": {
-                "example": { "detail": "An unexpected error occurred" }
+                "example": {
+                  "detail": "An unexpected error occurred"
+                }
               }
             }
           },
@@ -642,12 +790,18 @@
             "description": "Model not found",
             "content": {
               "application/json": {
-                "example": { "detail": "Model 'example' not found" }
+                "example": {
+                  "detail": "Model 'example' not found"
+                }
               }
             }
           }
         },
-        "security": [{ "APIKeyHeader": [] }]
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ]
       }
     },
     "/tasks": {
@@ -661,7 +815,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "items": { "$ref": "#/components/schemas/Task" },
+                  "items": {
+                    "$ref": "#/components/schemas/Task"
+                  },
                   "type": "array",
                   "title": "Response List Tasks Tasks Get"
                 }
@@ -672,7 +828,9 @@
             "description": "Service unavailable",
             "content": {
               "application/json": {
-                "example": { "detail": "Service unavailable" }
+                "example": {
+                  "detail": "Service unavailable"
+                }
               }
             }
           },
@@ -680,7 +838,9 @@
             "description": "Internal server error",
             "content": {
               "application/json": {
-                "example": { "detail": "An unexpected error occurred" }
+                "example": {
+                  "detail": "An unexpected error occurred"
+                }
               }
             }
           },
@@ -703,7 +863,11 @@
             }
           }
         },
-        "security": [{ "APIKeyHeader": [] }]
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ]
       }
     },
     "/tasks/{task_id}": {
@@ -711,13 +875,20 @@
         "tags": ["Tasks"],
         "summary": "Get Task",
         "operationId": "get_task_tasks__task_id__get",
-        "security": [{ "APIKeyHeader": [] }],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
         "parameters": [
           {
             "name": "task_id",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "title": "Task Id" }
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
           }
         ],
         "responses": {
@@ -725,7 +896,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Task" }
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
               }
             }
           },
@@ -733,7 +906,9 @@
             "description": "Service unavailable",
             "content": {
               "application/json": {
-                "example": { "detail": "Service unavailable" }
+                "example": {
+                  "detail": "Service unavailable"
+                }
               }
             }
           },
@@ -741,7 +916,9 @@
             "description": "Internal server error",
             "content": {
               "application/json": {
-                "example": { "detail": "An unexpected error occurred" }
+                "example": {
+                  "detail": "An unexpected error occurred"
+                }
               }
             }
           },
@@ -767,7 +944,9 @@
             "description": "Task not found",
             "content": {
               "application/json": {
-                "example": { "detail": "Task 'example' not found" }
+                "example": {
+                  "detail": "Task 'example' not found"
+                }
               }
             }
           }
@@ -779,13 +958,20 @@
         "tags": ["Tasks"],
         "summary": "Terminate Task",
         "operationId": "terminate_task_tasks__task_id__terminate_post",
-        "security": [{ "APIKeyHeader": [] }],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
         "parameters": [
           {
             "name": "task_id",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "title": "Task Id" }
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
           }
         ],
         "responses": {
@@ -794,7 +980,9 @@
             "content": {
               "application/json": {
                 "schema": {},
-                "example": { "message": "Terminating task 'example'" }
+                "example": {
+                  "message": "Terminating task 'example'"
+                }
               }
             }
           },
@@ -802,7 +990,9 @@
             "description": "Service unavailable",
             "content": {
               "application/json": {
-                "example": { "detail": "Service unavailable" }
+                "example": {
+                  "detail": "Service unavailable"
+                }
               }
             }
           },
@@ -810,7 +1000,9 @@
             "description": "Internal server error",
             "content": {
               "application/json": {
-                "example": { "detail": "An unexpected error occurred" }
+                "example": {
+                  "detail": "An unexpected error occurred"
+                }
               }
             }
           },
@@ -836,7 +1028,9 @@
             "description": "Task not found",
             "content": {
               "application/json": {
-                "example": { "detail": "Task 'example' not found" }
+                "example": {
+                  "detail": "Task 'example' not found"
+                }
               }
             }
           }
@@ -853,7 +1047,10 @@
             "enum": ["user", "assistant"],
             "title": "Role"
           },
-          "content": { "type": "string", "title": "Content" }
+          "content": {
+            "type": "string",
+            "title": "Content"
+          }
         },
         "type": "object",
         "required": ["role", "content"],
@@ -862,7 +1059,14 @@
       "ChatResponse": {
         "properties": {
           "message": {
-            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Message"
           }
         },
@@ -874,14 +1078,27 @@
         "properties": {
           "sources": {
             "anyOf": [
-              { "items": { "type": "string" }, "type": "array" },
-              { "type": "null" }
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
             ],
             "title": "Sources"
           },
-          "model": { "type": "string", "title": "Model", "default": "gpt-4o" },
+          "model": {
+            "type": "string",
+            "title": "Model",
+            "default": "gpt-4o"
+          },
           "messages": {
-            "items": { "$ref": "#/components/schemas/ChatMessage" },
+            "items": {
+              "$ref": "#/components/schemas/ChatMessage"
+            },
             "type": "array",
             "title": "Messages"
           }
@@ -898,19 +1115,36 @@
             "minLength": 3,
             "title": "Name"
           },
-          "description": { "type": "string", "title": "Description" },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
           "connector": {
             "oneOf": [
-              { "$ref": "#/components/schemas/SitemapConfig" },
-              { "$ref": "#/components/schemas/GithubIssuesConfig" },
-              { "$ref": "#/components/schemas/GithubReadmeConfig" }
+              {
+                "$ref": "#/components/schemas/SitemapConfig"
+              },
+              {
+                "$ref": "#/components/schemas/GithubIssuesConfig"
+              },
+              {
+                "$ref": "#/components/schemas/GithubReadmeConfig"
+              },
+              {
+                "$ref": "#/components/schemas/GithubPdfConfig"
+              },
+              {
+                "$ref": "#/components/schemas/RestApiConfig"
+              }
             ],
             "title": "Connector",
             "discriminator": {
               "propertyName": "type",
               "mapping": {
                 "github_issues": "#/components/schemas/GithubIssuesConfig",
+                "github_pdf": "#/components/schemas/GithubPdfConfig",
                 "github_readme": "#/components/schemas/GithubReadmeConfig",
+                "rest_api": "#/components/schemas/RestApiConfig",
                 "sitemap": "#/components/schemas/SitemapConfig"
               }
             }
@@ -922,10 +1156,22 @@
       },
       "Document": {
         "properties": {
-          "id": { "type": "string", "title": "Id" },
-          "content": { "type": "string", "title": "Content" },
-          "title": { "type": "string", "title": "Title" },
-          "url": { "type": "string", "title": "Url" },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "content": {
+            "type": "string",
+            "title": "Content"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "url": {
+            "type": "string",
+            "title": "Url"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -943,8 +1189,14 @@
             "const": "github_issues",
             "title": "Type"
           },
-          "repo_owner": { "type": "string", "title": "Repo Owner" },
-          "repo_name": { "type": "string", "title": "Repo Name" },
+          "repo_owner": {
+            "type": "string",
+            "title": "Repo Owner"
+          },
+          "repo_name": {
+            "type": "string",
+            "title": "Repo Name"
+          },
           "state": {
             "type": "string",
             "enum": ["all", "open", "closed"],
@@ -953,26 +1205,89 @@
           },
           "include_labels": {
             "anyOf": [
-              { "items": { "type": "string" }, "type": "array" },
-              { "type": "null" }
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
             ],
             "title": "Include Labels"
           },
           "exclude_labels": {
             "anyOf": [
-              { "items": { "type": "string" }, "type": "array" },
-              { "type": "null" }
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
             ],
             "title": "Exclude Labels"
           },
           "issue_age_limit": {
-            "anyOf": [{ "type": "integer" }, { "type": "null" }],
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Issue Age Limit"
           }
         },
         "type": "object",
         "required": ["type", "repo_owner", "repo_name"],
         "title": "GithubIssuesConfig"
+      },
+      "GithubPdfConfig": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "github_pdf",
+            "title": "Type"
+          },
+          "repo_owner": {
+            "type": "string",
+            "title": "Repo Owner"
+          },
+          "repo_name": {
+            "type": "string",
+            "title": "Repo Name"
+          },
+          "ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ref"
+          },
+          "path_filter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Path Filter"
+          }
+        },
+        "type": "object",
+        "required": ["type", "repo_owner", "repo_name"],
+        "title": "GithubPdfConfig"
       },
       "GithubReadmeConfig": {
         "properties": {
@@ -981,8 +1296,14 @@
             "const": "github_readme",
             "title": "Type"
           },
-          "repo_owner": { "type": "string", "title": "Repo Owner" },
-          "repo_name": { "type": "string", "title": "Repo Name" },
+          "repo_owner": {
+            "type": "string",
+            "title": "Repo Owner"
+          },
+          "repo_name": {
+            "type": "string",
+            "title": "Repo Name"
+          },
           "include_root": {
             "type": "boolean",
             "title": "Include Root",
@@ -990,13 +1311,27 @@
           },
           "sub_dirs": {
             "anyOf": [
-              { "items": { "type": "string" }, "type": "array" },
-              { "type": "null" }
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
             ],
             "title": "Sub Dirs"
           },
           "ref": {
-            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Ref"
           }
         },
@@ -1004,16 +1339,135 @@
         "required": ["type", "repo_owner", "repo_name"],
         "title": "GithubReadmeConfig"
       },
+      "RestApiConfig": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "rest_api",
+            "title": "Type",
+            "description": "Connector type identifier"
+          },
+          "url": {
+            "type": "string",
+            "title": "Url",
+            "description": "The API endpoint URL to send requests to"
+          },
+          "method": {
+            "type": "string",
+            "enum": ["GET", "POST"],
+            "title": "Method",
+            "description": "HTTP method to use (GET or POST)",
+            "default": "GET"
+          },
+          "headers": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Headers",
+            "description": "Optional HTTP headers to include in the request"
+          },
+          "body": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Body",
+            "description": "Optional request body for POST requests (JSON)"
+          },
+          "json_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Json Path",
+            "description": "Optional JSON path to extract data from response (e.g., 'data.items')"
+          },
+          "title_field": {
+            "type": "string",
+            "title": "Title Field",
+            "description": "Field name to use as document title (default: 'title')",
+            "default": "title"
+          },
+          "content_field": {
+            "type": "string",
+            "title": "Content Field",
+            "description": "Field name to use as document content (default: 'content')",
+            "default": "content"
+          },
+          "url_field": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url Field",
+            "description": "Optional field name to use as document URL. If not provided, uses the API endpoint URL"
+          },
+          "timeout": {
+            "type": "integer",
+            "title": "Timeout",
+            "description": "Request timeout in seconds (default: 300 seconds / 5 minutes)",
+            "default": 300
+          }
+        },
+        "type": "object",
+        "required": ["type", "url"],
+        "title": "RestApiConfig",
+        "description": "Configuration for REST API connector.\n\nThis connector sends HTTP requests to arbitrary cloud endpoints\nand indexes the returned JSON data."
+      },
       "SitemapConfig": {
         "properties": {
-          "type": { "type": "string", "const": "sitemap", "title": "Type" },
-          "sitemap_url": { "type": "string", "title": "Sitemap Url" },
+          "type": {
+            "type": "string",
+            "const": "sitemap",
+            "title": "Type"
+          },
+          "sitemap_url": {
+            "type": "string",
+            "title": "Sitemap Url"
+          },
           "include_pattern": {
-            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Include Pattern"
           },
           "exclude_pattern": {
-            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Exclude Pattern"
           }
         },
@@ -1023,11 +1477,26 @@
       },
       "SourceMetadata": {
         "properties": {
-          "id": { "type": "string", "title": "Id" },
-          "name": { "type": "string", "title": "Name" },
-          "description": { "type": "string", "title": "Description" },
-          "num_docs": { "type": "integer", "title": "Num Docs" },
-          "last_task_id": { "type": "string", "title": "Last Task Id" },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "num_docs": {
+            "type": "integer",
+            "title": "Num Docs"
+          },
+          "last_task_id": {
+            "type": "string",
+            "title": "Last Task Id"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -1040,16 +1509,30 @@
           },
           "connector": {
             "oneOf": [
-              { "$ref": "#/components/schemas/SitemapConfig" },
-              { "$ref": "#/components/schemas/GithubIssuesConfig" },
-              { "$ref": "#/components/schemas/GithubReadmeConfig" }
+              {
+                "$ref": "#/components/schemas/SitemapConfig"
+              },
+              {
+                "$ref": "#/components/schemas/GithubIssuesConfig"
+              },
+              {
+                "$ref": "#/components/schemas/GithubReadmeConfig"
+              },
+              {
+                "$ref": "#/components/schemas/GithubPdfConfig"
+              },
+              {
+                "$ref": "#/components/schemas/RestApiConfig"
+              }
             ],
             "title": "Connector",
             "discriminator": {
               "propertyName": "type",
               "mapping": {
                 "github_issues": "#/components/schemas/GithubIssuesConfig",
+                "github_pdf": "#/components/schemas/GithubPdfConfig",
                 "github_readme": "#/components/schemas/GithubReadmeConfig",
+                "rest_api": "#/components/schemas/RestApiConfig",
                 "sitemap": "#/components/schemas/SitemapConfig"
               }
             }
@@ -1071,11 +1554,23 @@
       "SourceTask": {
         "properties": {
           "task_id": {
-            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Task Id"
           },
-          "source": { "$ref": "#/components/schemas/SourceMetadata" },
-          "message": { "type": "string", "title": "Message" }
+          "source": {
+            "$ref": "#/components/schemas/SourceMetadata"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
         },
         "type": "object",
         "required": ["task_id", "source", "message"],
@@ -1084,22 +1579,50 @@
       "Task": {
         "properties": {
           "id": {
-            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Id"
           },
           "status": {
-            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Status"
           },
           "completed_at": {
-            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Completed At"
           },
           "metadata": {
             "anyOf": [
-              { "type": "object" },
-              { "type": "string" },
-              { "type": "null" }
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
             ],
             "title": "Metadata"
           }
@@ -1110,29 +1633,56 @@
       },
       "UpdateSourceRequest": {
         "properties": {
-          "sync": { "type": "boolean", "title": "Sync", "default": true },
+          "sync": {
+            "type": "boolean",
+            "title": "Sync",
+            "default": true
+          },
           "description": {
-            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Description"
           },
           "connector": {
             "anyOf": [
               {
                 "oneOf": [
-                  { "$ref": "#/components/schemas/SitemapConfig" },
-                  { "$ref": "#/components/schemas/GithubIssuesConfig" },
-                  { "$ref": "#/components/schemas/GithubReadmeConfig" }
+                  {
+                    "$ref": "#/components/schemas/SitemapConfig"
+                  },
+                  {
+                    "$ref": "#/components/schemas/GithubIssuesConfig"
+                  },
+                  {
+                    "$ref": "#/components/schemas/GithubReadmeConfig"
+                  },
+                  {
+                    "$ref": "#/components/schemas/GithubPdfConfig"
+                  },
+                  {
+                    "$ref": "#/components/schemas/RestApiConfig"
+                  }
                 ],
                 "discriminator": {
                   "propertyName": "type",
                   "mapping": {
                     "github_issues": "#/components/schemas/GithubIssuesConfig",
+                    "github_pdf": "#/components/schemas/GithubPdfConfig",
                     "github_readme": "#/components/schemas/GithubReadmeConfig",
+                    "rest_api": "#/components/schemas/RestApiConfig",
                     "sitemap": "#/components/schemas/SitemapConfig"
                   }
                 }
               },
-              { "type": "null" }
+              {
+                "type": "null"
+              }
             ],
             "title": "Connector"
           }
@@ -1142,7 +1692,11 @@
       }
     },
     "securitySchemes": {
-      "APIKeyHeader": { "type": "apiKey", "in": "header", "name": "x-api-key" }
+      "APIKeyHeader": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
+      }
     }
   }
 }
