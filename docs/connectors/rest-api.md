@@ -1,13 +1,13 @@
 ---
 sidebar_position: 7
-title: RESTful API
+title: REST API
 ---
 
 import ApiSchema from "@theme/ApiSchema";
 
-# RESTful API Connector
+# REST API Connector
 
-The RESTful API connector allows you to fetch and index JSON data from arbitrary cloud endpoints using `GET` or `POST` requests.
+The REST API connector allows you to fetch and index JSON data from arbitrary cloud endpoints using `GET` or `POST` requests.
 
 ## Features
 
@@ -28,7 +28,7 @@ The RESTful API connector allows you to fetch and index JSON data from arbitrary
   "name": "my-api-data",
   "description": "Data from my REST API",
   "connector": {
-    "type": "restful",
+    "type": "rest_api",
     "url": "https://api.example.com/documents",
     "method": "GET"
   }
@@ -42,7 +42,7 @@ The RESTful API connector allows you to fetch and index JSON data from arbitrary
   "name": "authenticated-api",
   "description": "Protected API endpoint",
   "connector": {
-    "type": "restful",
+    "type": "rest_api",
     "url": "https://api.example.com/search",
     "method": "POST",
     "headers": {
@@ -83,7 +83,7 @@ Use the `json_path` parameter to navigate to the items array:
   "name": "nested-api-data",
   "description": "API with nested response",
   "connector": {
-    "type": "restful",
+    "type": "rest_api",
     "url": "https://api.example.com/data",
     "method": "GET",
     "json_path": "data.items",
@@ -102,7 +102,7 @@ If your API uses different field names:
   "name": "custom-fields",
   "description": "API with custom field names",
   "connector": {
-    "type": "restful",
+    "type": "rest_api",
     "url": "https://api.example.com/articles",
     "method": "GET",
     "title_field": "headline",
@@ -121,7 +121,7 @@ If your API takes a long time to respond (e.g., processing large datasets):
   "name": "slow-api",
   "description": "API that takes several minutes to respond",
   "connector": {
-    "type": "restful",
+    "type": "rest_api",
     "url": "https://api.example.com/large-dataset",
     "method": "GET",
     "timeout": 600
@@ -133,18 +133,18 @@ Note: The `timeout` is specified in seconds. The default is 300 seconds (5 minut
 
 ## Configuration Parameters
 
-| Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
-| `type` | string | Yes | - | Must be "restful" |
-| `url` | string | Yes | - | The API endpoint URL (must start with http:// or https://) |
-| `method` | string | No | "GET" | HTTP method ("GET" or "POST") |
-| `headers` | object | No | null | Custom HTTP headers as key-value pairs |
-| `body` | object | No | null | Request body for POST requests (JSON) |
-| `json_path` | string | No | null | Dot-separated path to navigate nested JSON (e.g., "data.items") |
-| `title_field` | string | No | "title" | Field name to use as document title |
-| `content_field` | string | No | "content" | Field name to use as document content |
-| `url_field` | string | No | null | Field name to use as document URL (if not provided, uses API endpoint URL) |
-| `timeout` | integer | No | 300 | Request timeout in seconds (useful for slow APIs that take minutes to respond) |
+| Parameter       | Type    | Required | Default   | Description                                                                    |
+| --------------- | ------- | -------- | --------- | ------------------------------------------------------------------------------ |
+| `type`          | string  | Yes      | -         | Must be "rest_api"                                                             |
+| `url`           | string  | Yes      | -         | The API endpoint URL (must start with http:// or https://)                     |
+| `method`        | string  | No       | "GET"     | HTTP method ("GET" or "POST")                                                  |
+| `headers`       | object  | No       | null      | Custom HTTP headers as key-value pairs                                         |
+| `body`          | object  | No       | null      | Request body for POST requests (JSON)                                          |
+| `json_path`     | string  | No       | null      | Dot-separated path to navigate nested JSON (e.g., "data.items")                |
+| `title_field`   | string  | No       | "title"   | Field name to use as document title                                            |
+| `content_field` | string  | No       | "content" | Field name to use as document content                                          |
+| `url_field`     | string  | No       | null      | Field name to use as document URL (if not provided, uses API endpoint URL)     |
+| `timeout`       | integer | No       | 300       | Request timeout in seconds (useful for slow APIs that take minutes to respond) |
 
 ## Expected API Response Format
 
@@ -193,7 +193,7 @@ Note: The `timeout` is specified in seconds. The default is 300 seconds (5 minut
 
 - If the `content_field` is missing, the entire object is serialized as JSON
 - Non-string content fields are automatically serialized to JSON
-- Missing title fields default to "Document {index}"
+- Missing title fields default to "Document \{index\}"
 
 ### Document Chunking
 
@@ -208,7 +208,7 @@ Large documents are automatically chunked according to the configured `CHUNK_SIZ
 
 ### Metadata Preservation
 
-All fields except `title_field`, `content_field`, and `url_field` are preserved as metadata in the `RestfulDocument` model for potential future use.
+All fields except `title_field`, `content_field`, and `url_field` are preserved as metadata in the `RestApiDocument` model for potential future use.
 
 ## Error Handling
 
